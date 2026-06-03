@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 
 const vocabulary = [
   { article: "der", noun: "Kopf", english: "head" },
@@ -22,9 +22,20 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
+function getTranslationOptions(current: typeof vocabulary[0]): string[] {
+  const wrong = shuffle(
+    vocabulary.filter((w) => w.english !== current.english)
+  )
+    .slice(0, 3)
+    .map((w) => w.english);
+  return shuffle([current.english, ...wrong]);
+}
+
 type Status = "idle" | "correct" | "incorrect";
+type Mode = "article" | "translation";
 
 export default function Quiz() {
+  const [mode, setMode] = useState<Mode>("article");
   const [deck, setDeck] = useState(() => shuffle(vocabulary));
   const [index, setIndex] = useState(0);
   const [status, setStatus] = useState<Status>("idle");
@@ -34,18 +45,25 @@ export default function Quiz() {
 
   const current = deck[index];
 
+  const translationOptions = useMemo(
+    () => getTranslationOptions(current),
+    [current]
+  );
+
   const handleGuess = useCallback(
-    (article: string) => {
+    (answer: string) => {
       if (status !== "idle") return;
-      const isCorrect = article === current.article;
-      setChosen(article);
+      const correct =
+        mode === "article" ? current.article : current.english;
+      const isCorrect = answer === correct;
+      setChosen(answer);
       setStatus(isCorrect ? "correct" : "incorrect");
       setScore((s) => ({
         correct: s.correct + (isCorrect ? 1 : 0),
         total: s.total + 1,
       }));
     },
-    [status, current]
+    [status, current, mode]
   );
 
   const handleNext = useCallback(() => {
@@ -58,14 +76,22 @@ export default function Quiz() {
     }
   }, [index, deck.length]);
 
-  const handleRestart = useCallback(() => {
+  const resetQuiz = useCallback((nextMode?: Mode) => {
     setDeck(shuffle(vocabulary));
     setIndex(0);
     setStatus("idle");
     setChosen(null);
     setScore({ correct: 0, total: 0 });
     setFinished(false);
+    if (nextMode) setMode(nextMode);
   }, []);
+
+  const handleModeSwitch = useCallback(
+    (next: Mode) => {
+      if (next !== mode) resetQuiz(next);
+    },
+    [mode, resetQuiz]
+  );
 
   const articles = ["der", "die", "das"];
 
@@ -89,7 +115,7 @@ export default function Quiz() {
               ? "Great work! Keep practising!"
               : "Keep going — you'll get there!"}
           </p>
-          <button className="btn btn-next" onClick={handleRestart}>
+          <button className="btn btn-next" onClick={() => resetQuiz()}>
             Play Again
           </button>
         </div>
@@ -109,6 +135,21 @@ export default function Quiz() {
         </div>
       </header>
 
+      <div className="mode-toggle">
+        <button
+          className={`mode-btn${mode === "article" ? " mode-btn-active" : ""}`}
+          onClick={() => handleModeSwitch("article")}
+        >
+          Article
+        </button>
+        <button
+          className={`mode-btn${mode === "translation" ? " mode-btn-active" : ""}`}
+          onClick={() => handleModeSwitch("translation")}
+        >
+          Translation
+        </button>
+      </div>
+
       <div className="progress-bar-track">
         <div
           className="progress-bar-fill"
@@ -120,52 +161,103 @@ export default function Quiz() {
         <div className="card quiz-card">
           <div className="flag-bar" />
 
-          <p className="instruction">Choose the correct article</p>
+          {mode === "article" ? (
+            <>
+              <p className="instruction">Choose the correct article</p>
 
-          <div className="noun-display">
-            <span className="noun-word">{current.noun}</span>
-            <span className="noun-english">{current.english}</span>
-          </div>
-
-          <div className="buttons-grid">
-            {articles.map((art) => {
-              let btnClass = "btn btn-article";
-              if (status !== "idle") {
-                if (art === current.article) btnClass += " btn-correct";
-                else if (art === chosen && art !== current.article)
-                  btnClass += " btn-wrong";
-                else btnClass += " btn-dim";
-              }
-              return (
-                <button
-                  key={art}
-                  className={btnClass}
-                  onClick={() => handleGuess(art)}
-                  disabled={status !== "idle"}
-                >
-                  {art}
-                </button>
-              );
-            })}
-          </div>
-
-          {status !== "idle" && (
-            <div className={`feedback ${status === "correct" ? "feedback-correct" : "feedback-incorrect"}`}>
-              <span className="feedback-icon">
-                {status === "correct" ? "✓" : "✗"}
-              </span>
-              <div>
-                <p className="feedback-verdict">
-                  {status === "correct" ? "Correct!" : "Not quite!"}
-                </p>
-                <p className="feedback-answer">
-                  The answer is{" "}
-                  <strong>
-                    {current.article} {current.noun}
-                  </strong>
-                </p>
+              <div className="noun-display">
+                <span className="noun-word">{current.noun}</span>
+                <span className="noun-english">{current.english}</span>
               </div>
-            </div>
+
+              <div className="buttons-grid">
+                {articles.map((art) => {
+                  let btnClass = "btn btn-article";
+                  if (status !== "idle") {
+                    if (art === current.article) btnClass += " btn-correct";
+                    else if (art === chosen) btnClass += " btn-wrong";
+                    else btnClass += " btn-dim";
+                  }
+                  return (
+                    <button
+                      key={art}
+                      className={btnClass}
+                      onClick={() => handleGuess(art)}
+                      disabled={status !== "idle"}
+                    >
+                      {art}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {status !== "idle" && (
+                <div className={`feedback ${status === "correct" ? "feedback-correct" : "feedback-incorrect"}`}>
+                  <span className="feedback-icon">
+                    {status === "correct" ? "✓" : "✗"}
+                  </span>
+                  <div>
+                    <p className="feedback-verdict">
+                      {status === "correct" ? "Correct!" : "Not quite!"}
+                    </p>
+                    <p className="feedback-answer">
+                      The answer is{" "}
+                      <strong>
+                        {current.article} {current.noun}
+                      </strong>
+                    </p>
+                  </div>
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              <p className="instruction">Choose the correct translation</p>
+
+              <div className="noun-display">
+                <span className="noun-word">
+                  <span className="noun-article-hint">{current.article}</span>{" "}
+                  {current.noun}
+                </span>
+              </div>
+
+              <div className="buttons-grid-translation">
+                {translationOptions.map((opt) => {
+                  let btnClass = "btn btn-translation";
+                  if (status !== "idle") {
+                    if (opt === current.english) btnClass += " btn-correct";
+                    else if (opt === chosen) btnClass += " btn-wrong";
+                    else btnClass += " btn-dim";
+                  }
+                  return (
+                    <button
+                      key={opt}
+                      className={btnClass}
+                      onClick={() => handleGuess(opt)}
+                      disabled={status !== "idle"}
+                    >
+                      {opt}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {status !== "idle" && (
+                <div className={`feedback ${status === "correct" ? "feedback-correct" : "feedback-incorrect"}`}>
+                  <span className="feedback-icon">
+                    {status === "correct" ? "✓" : "✗"}
+                  </span>
+                  <div>
+                    <p className="feedback-verdict">
+                      {status === "correct" ? "Correct!" : "Not quite!"}
+                    </p>
+                    <p className="feedback-answer">
+                      <strong>{current.article} {current.noun}</strong> = <strong>{current.english}</strong>
+                    </p>
+                  </div>
+                </div>
+              )}
+            </>
           )}
         </div>
 
