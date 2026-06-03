@@ -412,9 +412,13 @@ body {
   box-shadow: 0 1px 4px rgba(0,0,0,0.15);
 }
 
+/* Article color system: der = blue, die = red, das = green */
+.article-color-der { color: #2563eb; }
+.article-color-die { color: #dc2626; }
+.article-color-das { color: #16a34a; }
+
 /* Translation mode */
 .noun-article-hint {
-  color: #DD0000;
   font-style: italic;
 }
 

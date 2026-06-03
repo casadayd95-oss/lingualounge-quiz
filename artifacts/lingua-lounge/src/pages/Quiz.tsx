@@ -172,7 +172,7 @@ export default function Quiz() {
 
               <div className="buttons-grid">
                 {articles.map((art) => {
-                  let btnClass = "btn btn-article";
+                  let btnClass = `btn btn-article article-color-${art}`;
                   if (status !== "idle") {
                     if (art === current.article) btnClass += " btn-correct";
                     else if (art === chosen) btnClass += " btn-wrong";
@@ -216,7 +216,7 @@ export default function Quiz() {
 
               <div className="noun-display">
                 <span className="noun-word">
-                  <span className="noun-article-hint">{current.article}</span>{" "}
+                  <span className={`noun-article-hint article-color-${current.article}`}>{current.article}</span>{" "}
                   {current.noun}
                 </span>
               </div>
