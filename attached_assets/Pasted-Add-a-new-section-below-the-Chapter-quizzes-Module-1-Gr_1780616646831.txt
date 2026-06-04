@@ -1,0 +1,262 @@
+Add a new section below the Chapter quizzes:
+
+⭐ Module 1 Grammar Practice
+
+IMPORTANT:
+
+* Keep it completely separate from the Vocabulary quizzes.
+* Do NOT modify the existing vocabulary quizzes.
+* Use the same visual design, progress bar, score tracking, feedback cards, and results screen as the vocabulary quizzes.
+
+QUESTION BANK
+
+Create a grammar question bank of approximately 75–100 questions.
+
+Each playthrough should randomly generate 20 questions from the larger question bank.
+
+The questions should vary between playthroughs so users do not always see the same questions.
+
+IMPORTANT:
+
+* Balance the 20-question quiz so every session includes at least one question from each grammar category.
+* After ensuring one question from each category, fill the remaining question slots randomly from the full question bank.
+* The goal is variety while still guaranteeing complete Module 1 review coverage.
+
+GRAMMAR TOPICS
+
+Build questions from the Module 1 grammar cheat sheet.
+
+1. Verb Conjugation
+
+Use:
+
+* kommen
+* lernen
+* wohnen
+* leben
+* heißen
+* arbeiten
+* sprechen
+* sein
+* haben
+
+Examples:
+
+Ich _____ aus Spanien.
+→ komme
+
+Wir _____ in Wien.
+→ sind
+
+Er _____ Deutsch.
+→ lernt
+
+2. Personal Pronouns
+
+Practice:
+
+* er
+* sie
+
+Examples:
+
+Simon → er
+
+Miriam → sie
+
+Lydia und Arno → sie
+
+3. W-Questions
+
+Practice:
+
+* Wer
+* Wie
+* Woher
+
+Examples:
+
+_____ heißt du?
+→ Wie
+
+_____ ist das?
+→ Wer
+
+_____ kommen Sie?
+→ Woher
+
+4. Sentence Structure
+
+Practice German word order.
+
+Examples:
+
+Choose the correct sentence:
+
+* Ich heiße Rita.
+* Heiße ich Rita.
+* Rita ich heiße.
+* Ich Rita heiße.
+
+5. Countries and Prepositions
+
+Practice:
+
+* aus
+* in
+
+Examples:
+
+Ich komme _____ Österreich.
+→ aus
+
+Ich wohne _____ München.
+→ in
+
+6. Possessive Articles
+
+Practice:
+
+* mein
+* meine
+* dein
+* deine
+
+Examples:
+
+_____ Schwester
+→ meine
+
+_____ Vater
+→ dein
+
+7. Family Questions
+
+Examples:
+
+Ist das dein Bruder?
+
+Ja, das ist mein Bruder.
+
+Nein, das ist mein Onkel.
+
+8. Ja / Nein / Doch
+
+Examples:
+
+Ist das deine Schwester?
+
+→ Ja
+→ Nein
+
+Ist das nicht deine Schwester?
+
+→ Doch
+→ Nein
+
+9. Professions
+
+Practice:
+
+* Arzt
+* Ärztin
+* Student
+* Studentin
+* Kellner
+* Kellnerin
+* Friseur
+* Friseurin
+
+Examples:
+
+Sie arbeitet als _____.
+→ Friseurin
+
+10. Communication Patterns
+
+Practice common Module 1 communication phrases:
+
+* Wie heißt du?
+* Wer bist du?
+* Wie geht's?
+* Woher kommst du?
+* Was machst du beruflich?
+* Welche Sprachen sprichst du?
+
+11. Negation
+
+Practice:
+
+* nicht
+
+Examples:
+
+Wir sind verheiratet.
+Wir sind nicht verheiratet.
+
+12. Languages
+
+Practice:
+
+* Deutsch
+* Englisch
+* Spanisch
+* Französisch
+* Russisch
+* Chinesisch
+* Türkisch
+
+Examples:
+
+Welche Sprachen sprichst du?
+
+Ich spreche Deutsch und Englisch.
+
+13. Family Vocabulary Relationships
+
+Practice:
+
+* Vater
+* Mutter
+* Bruder
+* Schwester
+* Geschwister
+* Eltern
+* Großeltern
+* Sohn
+* Tochter
+* Enkel
+* Enkelin
+
+Example:
+
+Antonio und Eva sind meine _____.
+→ Großeltern
+
+QUESTION TYPES
+
+Use a mix of:
+
+* Multiple choice fill-in-the-blank
+* Multiple choice sentence order
+* Pronoun matching
+* Question-word selection
+* Conjugation questions
+* Family relationship questions
+* Communication phrase questions
+
+RESULTS SCREEN
+
+Display:
+
+Grammar Score:
+X / 20
+
+Buttons:
+
+* Play Again
+* Back to Module 1
+
+GOAL
+
+The grammar practice should feel like a Duolingo-style review of everything learned in Module 1 and should take approximately 3–5 minutes to complete.

@@ -553,6 +553,112 @@ body {
   animation: none;
 }
 
+/* Grammar quiz */
+.grammar-category-bar {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: white;
+  background: #1a1a1a;
+  text-align: center;
+  padding: 6px 20px;
+}
+
+.grammar-progress-fill {
+  background: linear-gradient(90deg, #2563eb, #ca8a04);
+}
+
+.question-prompt-wrap {
+  padding: 24px 24px 28px;
+  border-bottom: 1px solid var(--border);
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.question-prompt {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+  line-height: 1.45;
+  white-space: pre-line;
+}
+
+.prompt-blank {
+  color: #2563eb;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* Grammar start screen */
+.section-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 24px 0 20px;
+}
+
+.grammar-practice-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: #1a1a1a;
+  border: none;
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: var(--shadow);
+  transition: all 0.15s ease;
+  gap: 12px;
+}
+
+.grammar-practice-btn:hover {
+  background: #2d2d2d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.grammar-practice-btn:active {
+  transform: translateY(0);
+}
+
+.grammar-practice-btn .chapter-arrow {
+  color: rgba(255,255,255,0.5);
+}
+
+.grammar-btn-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.grammar-btn-star {
+  font-size: 28px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.grammar-btn-title {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+}
+
+.grammar-btn-meta {
+  display: block;
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  margin-top: 3px;
+  font-weight: 500;
+}
+
 .btn-back-outline {
   width: 100%;
   padding: 15px;

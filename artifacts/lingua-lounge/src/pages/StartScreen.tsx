@@ -2,9 +2,10 @@ import { chapters, type Chapter } from "@/data/chapters";
 
 type Props = {
   onSelect: (chapter: Chapter) => void;
+  onGrammar: () => void;
 };
 
-export default function StartScreen({ onSelect }: Props) {
+export default function StartScreen({ onSelect, onGrammar }: Props) {
   return (
     <div className="screen start-screen">
       <div className="start-hero">
@@ -18,7 +19,7 @@ export default function StartScreen({ onSelect }: Props) {
       </div>
 
       <div className="start-body">
-        <p className="module-label">Module 1</p>
+        <p className="module-label">Module 1 — Vocabulary</p>
 
         <div className="chapter-list">
           {chapters.map((ch) => {
@@ -43,6 +44,21 @@ export default function StartScreen({ onSelect }: Props) {
             );
           })}
         </div>
+
+        <div className="section-divider" />
+
+        <p className="module-label">Module 1 — Grammar Practice</p>
+
+        <button className="grammar-practice-btn" onClick={onGrammar}>
+          <div className="grammar-btn-left">
+            <span className="grammar-btn-star">⭐</span>
+            <div>
+              <span className="grammar-btn-title">Module 1 Grammar Practice</span>
+              <span className="grammar-btn-meta">20 questions · all grammar topics</span>
+            </div>
+          </div>
+          <span className="chapter-arrow">›</span>
+        </button>
       </div>
     </div>
   );
