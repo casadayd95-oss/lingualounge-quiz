@@ -1,0 +1,106 @@
+Create a start screen before the quiz.
+
+The start screen should show:
+
+LinguaLounge Quiz
+A1.1
+
+Module 1
+
+Chapter 1 - Greetings & Introductions
+Chapter 2 - Professions & Personal Info
+Chapter 3 - Family & Languages
+
+When the user selects a chapter, load that chapter’s vocabulary into the existing quiz engine.
+
+Use these vocabulary lists:
+
+Chapter 1 - Greetings & Introductions:
+Hallo = hello
+Guten Tag = good day
+Guten Morgen = good morning
+Guten Abend = good evening
+Gute Nacht = good night
+Tschüss = bye
+Auf Wiedersehen = goodbye
+Entschuldigung = excuse me / sorry
+Danke = thank you
+Wie heißt du? = What is your name?
+Ich heiße... = My name is...
+Wer bist du? = Who are you?
+Woher kommst du? = Where are you from?
+Ich komme aus... = I come from...
+Deutschland = Germany
+Österreich = Austria
+Spanien = Spain
+Frankreich = France
+Türkei = Turkey
+die Schweiz = Switzerland
+die USA = USA
+Eritrea = Eritrea
+
+Chapter 2 - Professions & Personal Info:
+der Ingenieur = engineer
+die Ingenieurin = female engineer
+der Student = student
+die Studentin = female student
+der Kellner = waiter
+die Kellnerin = waitress
+der Arzt = doctor
+die Ärztin = female doctor
+der Lehrer = teacher
+die Lehrerin = female teacher
+der Verkäufer = salesman
+die Verkäuferin = saleswoman
+der Friseur = hairdresser
+die Friseurin = female hairdresser
+der Paketsteller = parcel delivery worker
+arbeiten = to work
+wohnen = to live/reside
+leben = to live
+haben = to have
+sein = to be
+verheiratet = married
+geschieden = divorced
+Single = single
+das Kind = child
+
+Chapter 3 - Family & Languages:
+der Vater = father
+die Mutter = mother
+der Bruder = brother
+die Schwester = sister
+die Oma = grandma
+der Opa = grandpa
+der Onkel = uncle
+die Tante = aunt
+der Sohn = son
+die Tochter = daughter
+die Eltern = parents
+die Großeltern = grandparents
+der Großvater = grandfather
+die Großmutter = grandmother
+der Enkel = grandson
+die Enkelin = granddaughter
+der Ehemann = husband
+die Ehefrau = wife
+die Sprache = language
+Deutsch = German
+Englisch = English
+Spanisch = Spanish
+Französisch = French
+Italienisch = Italian
+Türkisch = Turkish
+Polnisch = Polish
+Russisch = Russian
+Chinesisch = Chinese
+sprechen = to speak
+
+Important:
+- Keep the existing Article Mode and Translation Mode.
+- Article Mode should only show nouns with der/die/das.
+- For words without articles, only allow Translation Mode.
+- Keep the current design style.
+- Do not add grammar practice yet.
+- Do not add login, database, backend, streaks, hints, payments, or extra features.
+- Keep it simple and beginner-friendly.

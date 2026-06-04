@@ -1,17 +1,10 @@
 import { useState, useCallback, useMemo } from "react";
+import { type Chapter, type Word } from "@/data/chapters";
 
-const vocabulary = [
-  { article: "der", noun: "Kopf", english: "head" },
-  { article: "die", noun: "Nase", english: "nose" },
-  { article: "das", noun: "Auge", english: "eye" },
-  { article: "der", noun: "Mund", english: "mouth" },
-  { article: "das", noun: "Ohr", english: "ear" },
-  { article: "die", noun: "Hand", english: "hand" },
-  { article: "der", noun: "Arm", english: "arm" },
-  { article: "das", noun: "Bein", english: "leg" },
-  { article: "der", noun: "Fuß", english: "foot" },
-  { article: "die", noun: "Schulter", english: "shoulder" },
-];
+type Props = {
+  chapter: Chapter;
+  onBack: () => void;
+};
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -22,10 +15,8 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-function getTranslationOptions(current: typeof vocabulary[0]): string[] {
-  const wrong = shuffle(
-    vocabulary.filter((w) => w.english !== current.english)
-  )
+function getTranslationOptions(current: Word, allWords: Word[]): string[] {
+  const wrong = shuffle(allWords.filter((w) => w.english !== current.english))
     .slice(0, 3)
     .map((w) => w.english);
   return shuffle([current.english, ...wrong]);
@@ -34,9 +25,19 @@ function getTranslationOptions(current: typeof vocabulary[0]): string[] {
 type Status = "idle" | "correct" | "incorrect";
 type Mode = "article" | "translation";
 
-export default function Quiz() {
-  const [mode, setMode] = useState<Mode>("article");
-  const [deck, setDeck] = useState(() => shuffle(vocabulary));
+export default function Quiz({ chapter, onBack }: Props) {
+  const articleWords = useMemo(
+    () => chapter.words.filter((w) => w.article),
+    [chapter]
+  );
+  const hasArticleWords = articleWords.length > 0;
+
+  const [mode, setMode] = useState<Mode>(
+    hasArticleWords ? "article" : "translation"
+  );
+  const [deck, setDeck] = useState<Word[]>(() =>
+    shuffle(hasArticleWords ? articleWords : chapter.words)
+  );
   const [index, setIndex] = useState(0);
   const [status, setStatus] = useState<Status>("idle");
   const [chosen, setChosen] = useState<string | null>(null);
@@ -46,15 +47,14 @@ export default function Quiz() {
   const current = deck[index];
 
   const translationOptions = useMemo(
-    () => getTranslationOptions(current),
-    [current]
+    () => getTranslationOptions(current, chapter.words),
+    [current, chapter.words]
   );
 
   const handleGuess = useCallback(
     (answer: string) => {
       if (status !== "idle") return;
-      const correct =
-        mode === "article" ? current.article : current.english;
+      const correct = mode === "article" ? current.article! : current.english;
       const isCorrect = answer === correct;
       setChosen(answer);
       setStatus(isCorrect ? "correct" : "incorrect");
@@ -76,15 +76,20 @@ export default function Quiz() {
     }
   }, [index, deck.length]);
 
-  const resetQuiz = useCallback((nextMode?: Mode) => {
-    setDeck(shuffle(vocabulary));
-    setIndex(0);
-    setStatus("idle");
-    setChosen(null);
-    setScore({ correct: 0, total: 0 });
-    setFinished(false);
-    if (nextMode) setMode(nextMode);
-  }, []);
+  const resetQuiz = useCallback(
+    (nextMode: Mode) => {
+      const nextDeck =
+        nextMode === "article" ? articleWords : chapter.words;
+      setDeck(shuffle(nextDeck));
+      setIndex(0);
+      setStatus("idle");
+      setChosen(null);
+      setScore({ correct: 0, total: 0 });
+      setFinished(false);
+      setMode(nextMode);
+    },
+    [articleWords, chapter.words]
+  );
 
   const handleModeSwitch = useCallback(
     (next: Mode) => {
@@ -93,7 +98,7 @@ export default function Quiz() {
     [mode, resetQuiz]
   );
 
-  const articles = ["der", "die", "das"];
+  const articles = ["der", "die", "das"] as const;
 
   if (finished) {
     const pct = Math.round((score.correct / score.total) * 100);
@@ -101,7 +106,9 @@ export default function Quiz() {
       <div className="screen">
         <div className="card results-card">
           <div className="flag-bar" />
-          <div className="results-icon">{pct === 100 ? "🏆" : pct >= 70 ? "⭐" : "📚"}</div>
+          <div className="results-icon">
+            {pct === 100 ? "🏆" : pct >= 70 ? "⭐" : "📚"}
+          </div>
           <h2 className="results-title">Round Complete!</h2>
           <div className="score-ring">
             <span className="score-number">{score.correct}</span>
@@ -115,9 +122,14 @@ export default function Quiz() {
               ? "Great work! Keep practising!"
               : "Keep going — you'll get there!"}
           </p>
-          <button className="btn btn-next" onClick={() => resetQuiz()}>
-            Play Again
-          </button>
+          <div className="results-actions">
+            <button className="btn btn-next" onClick={() => resetQuiz(mode)}>
+              Play Again
+            </button>
+            <button className="btn btn-back-outline" onClick={onBack}>
+              ← Change Chapter
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -126,9 +138,11 @@ export default function Quiz() {
   return (
     <div className="screen">
       <header className="header">
-        <div className="logo-row">
-          <span className="logo-icon">🇩🇪</span>
-          <span className="logo-text">LinguaLounge</span>
+        <button className="back-btn" onClick={onBack}>
+          ‹ Back
+        </button>
+        <div className="header-center">
+          <span className="logo-text">Ch. {chapter.number}</span>
         </div>
         <div className="progress-pill">
           {index + 1} / {deck.length}
@@ -137,8 +151,10 @@ export default function Quiz() {
 
       <div className="mode-toggle">
         <button
-          className={`mode-btn${mode === "article" ? " mode-btn-active" : ""}`}
-          onClick={() => handleModeSwitch("article")}
+          className={`mode-btn${mode === "article" ? " mode-btn-active" : ""}${!hasArticleWords ? " mode-btn-disabled" : ""}`}
+          onClick={() => hasArticleWords && handleModeSwitch("article")}
+          disabled={!hasArticleWords}
+          title={!hasArticleWords ? "No nouns with articles in this chapter" : undefined}
         >
           Article
         </button>
@@ -166,7 +182,7 @@ export default function Quiz() {
               <p className="instruction">Choose the correct article</p>
 
               <div className="noun-display">
-                <span className="noun-word">{current.noun}</span>
+                <span className="noun-word">{current.german}</span>
                 <span className="noun-english">{current.english}</span>
               </div>
 
@@ -192,7 +208,13 @@ export default function Quiz() {
               </div>
 
               {status !== "idle" && (
-                <div className={`feedback ${status === "correct" ? "feedback-correct" : "feedback-incorrect"}`}>
+                <div
+                  className={`feedback ${
+                    status === "correct"
+                      ? "feedback-correct"
+                      : "feedback-incorrect"
+                  }`}
+                >
                   <span className="feedback-icon">
                     {status === "correct" ? "✓" : "✗"}
                   </span>
@@ -203,7 +225,7 @@ export default function Quiz() {
                     <p className="feedback-answer">
                       The answer is{" "}
                       <strong>
-                        {current.article} {current.noun}
+                        {current.article} {current.german}
                       </strong>
                     </p>
                   </div>
@@ -216,8 +238,18 @@ export default function Quiz() {
 
               <div className="noun-display">
                 <span className="noun-word">
-                  <span className={`noun-article-hint article-color-${current.article}`}>{current.article}</span>{" "}
-                  {current.noun}
+                  {current.article ? (
+                    <>
+                      <span
+                        className={`noun-article-hint article-color-${current.article}`}
+                      >
+                        {current.article}
+                      </span>{" "}
+                      {current.german}
+                    </>
+                  ) : (
+                    current.german
+                  )}
                 </span>
               </div>
 
@@ -243,7 +275,13 @@ export default function Quiz() {
               </div>
 
               {status !== "idle" && (
-                <div className={`feedback ${status === "correct" ? "feedback-correct" : "feedback-incorrect"}`}>
+                <div
+                  className={`feedback ${
+                    status === "correct"
+                      ? "feedback-correct"
+                      : "feedback-incorrect"
+                  }`}
+                >
                   <span className="feedback-icon">
                     {status === "correct" ? "✓" : "✗"}
                   </span>
@@ -252,7 +290,18 @@ export default function Quiz() {
                       {status === "correct" ? "Correct!" : "Not quite!"}
                     </p>
                     <p className="feedback-answer">
-                      <strong>{current.article} {current.noun}</strong> = <strong>{current.english}</strong>
+                      {current.article && (
+                        <>
+                          <strong>
+                            {current.article} {current.german}
+                          </strong>{" "}
+                          ={" "}
+                        </>
+                      )}
+                      {!current.article && (
+                        <><strong>{current.german}</strong> = </>
+                      )}
+                      <strong>{current.english}</strong>
                     </p>
                   </div>
                 </div>

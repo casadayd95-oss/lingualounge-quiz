@@ -1,0 +1,107 @@
+export type Word = {
+  article?: "der" | "die" | "das";
+  german: string;
+  english: string;
+};
+
+export type Chapter = {
+  number: number;
+  title: string;
+  words: Word[];
+};
+
+export const chapters: Chapter[] = [
+  {
+    number: 1,
+    title: "Greetings & Introductions",
+    words: [
+      { german: "Hallo", english: "hello" },
+      { german: "Guten Tag", english: "good day" },
+      { german: "Guten Morgen", english: "good morning" },
+      { german: "Guten Abend", english: "good evening" },
+      { german: "Gute Nacht", english: "good night" },
+      { german: "Tschüss", english: "bye" },
+      { german: "Auf Wiedersehen", english: "goodbye" },
+      { german: "Entschuldigung", english: "excuse me / sorry" },
+      { german: "Danke", english: "thank you" },
+      { german: "Wie heißt du?", english: "What is your name?" },
+      { german: "Ich heiße...", english: "My name is..." },
+      { german: "Wer bist du?", english: "Who are you?" },
+      { german: "Woher kommst du?", english: "Where are you from?" },
+      { german: "Ich komme aus...", english: "I come from..." },
+      { german: "Deutschland", english: "Germany" },
+      { german: "Österreich", english: "Austria" },
+      { german: "Spanien", english: "Spain" },
+      { german: "Frankreich", english: "France" },
+      { german: "Türkei", english: "Turkey" },
+      { article: "die", german: "Schweiz", english: "Switzerland" },
+      { article: "die", german: "USA", english: "USA" },
+      { german: "Eritrea", english: "Eritrea" },
+    ],
+  },
+  {
+    number: 2,
+    title: "Professions & Personal Info",
+    words: [
+      { article: "der", german: "Ingenieur", english: "engineer" },
+      { article: "die", german: "Ingenieurin", english: "female engineer" },
+      { article: "der", german: "Student", english: "student" },
+      { article: "die", german: "Studentin", english: "female student" },
+      { article: "der", german: "Kellner", english: "waiter" },
+      { article: "die", german: "Kellnerin", english: "waitress" },
+      { article: "der", german: "Arzt", english: "doctor" },
+      { article: "die", german: "Ärztin", english: "female doctor" },
+      { article: "der", german: "Lehrer", english: "teacher" },
+      { article: "die", german: "Lehrerin", english: "female teacher" },
+      { article: "der", german: "Verkäufer", english: "salesman" },
+      { article: "die", german: "Verkäuferin", english: "saleswoman" },
+      { article: "der", german: "Friseur", english: "hairdresser" },
+      { article: "die", german: "Friseurin", english: "female hairdresser" },
+      { article: "der", german: "Paketsteller", english: "parcel delivery worker" },
+      { article: "das", german: "Kind", english: "child" },
+      { german: "arbeiten", english: "to work" },
+      { german: "wohnen", english: "to live / reside" },
+      { german: "leben", english: "to live" },
+      { german: "haben", english: "to have" },
+      { german: "sein", english: "to be" },
+      { german: "verheiratet", english: "married" },
+      { german: "geschieden", english: "divorced" },
+      { german: "Single", english: "single" },
+    ],
+  },
+  {
+    number: 3,
+    title: "Family & Languages",
+    words: [
+      { article: "der", german: "Vater", english: "father" },
+      { article: "die", german: "Mutter", english: "mother" },
+      { article: "der", german: "Bruder", english: "brother" },
+      { article: "die", german: "Schwester", english: "sister" },
+      { article: "die", german: "Oma", english: "grandma" },
+      { article: "der", german: "Opa", english: "grandpa" },
+      { article: "der", german: "Onkel", english: "uncle" },
+      { article: "die", german: "Tante", english: "aunt" },
+      { article: "der", german: "Sohn", english: "son" },
+      { article: "die", german: "Tochter", english: "daughter" },
+      { article: "die", german: "Eltern", english: "parents" },
+      { article: "die", german: "Großeltern", english: "grandparents" },
+      { article: "der", german: "Großvater", english: "grandfather" },
+      { article: "die", german: "Großmutter", english: "grandmother" },
+      { article: "der", german: "Enkel", english: "grandson" },
+      { article: "die", german: "Enkelin", english: "granddaughter" },
+      { article: "der", german: "Ehemann", english: "husband" },
+      { article: "die", german: "Ehefrau", english: "wife" },
+      { article: "die", german: "Sprache", english: "language" },
+      { german: "Deutsch", english: "German" },
+      { german: "Englisch", english: "English" },
+      { german: "Spanisch", english: "Spanish" },
+      { german: "Französisch", english: "French" },
+      { german: "Italienisch", english: "Italian" },
+      { german: "Türkisch", english: "Turkish" },
+      { german: "Polnisch", english: "Polish" },
+      { german: "Russisch", english: "Russian" },
+      { german: "Chinesisch", english: "Chinese" },
+      { german: "sprechen", english: "to speak" },
+    ],
+  },
+];
