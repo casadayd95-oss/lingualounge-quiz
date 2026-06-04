@@ -1,5 +1,10 @@
 import { useState, useCallback, useMemo } from "react";
-import { type Chapter, type Word } from "@/data/chapters";
+import {
+  type Chapter,
+  type Word,
+  getArticleAnswer,
+  getGenderColorClass,
+} from "@/data/chapters";
 
 type Props = {
   chapter: Chapter;
@@ -21,6 +26,13 @@ function getTranslationOptions(current: Word, allWords: Word[]): string[] {
     .map((w) => w.english);
   return shuffle([current.english, ...wrong]);
 }
+
+const ARTICLE_BUTTONS = [
+  { id: "der",      label: "der",      colorClass: "article-color-der"    },
+  { id: "die",      label: "die",      colorClass: "article-color-die-f"  },
+  { id: "das",      label: "das",      colorClass: "article-color-das"    },
+  { id: "die (pl.)", label: "die (pl.)", colorClass: "article-color-die-pl" },
+] as const;
 
 type Status = "idle" | "correct" | "incorrect";
 type Mode = "article" | "translation";
@@ -54,7 +66,8 @@ export default function Quiz({ chapter, onBack }: Props) {
   const handleGuess = useCallback(
     (answer: string) => {
       if (status !== "idle") return;
-      const correct = mode === "article" ? current.article! : current.english;
+      const correct =
+        mode === "article" ? getArticleAnswer(current) : current.english;
       const isCorrect = answer === correct;
       setChosen(answer);
       setStatus(isCorrect ? "correct" : "incorrect");
@@ -97,8 +110,6 @@ export default function Quiz({ chapter, onBack }: Props) {
     },
     [mode, resetQuiz]
   );
-
-  const articles = ["der", "die", "das"] as const;
 
   if (finished) {
     const pct = Math.round((score.correct / score.total) * 100);
@@ -154,7 +165,6 @@ export default function Quiz({ chapter, onBack }: Props) {
           className={`mode-btn${mode === "article" ? " mode-btn-active" : ""}${!hasArticleWords ? " mode-btn-disabled" : ""}`}
           onClick={() => hasArticleWords && handleModeSwitch("article")}
           disabled={!hasArticleWords}
-          title={!hasArticleWords ? "No nouns with articles in this chapter" : undefined}
         >
           Article
         </button>
@@ -187,21 +197,22 @@ export default function Quiz({ chapter, onBack }: Props) {
               </div>
 
               <div className="buttons-grid">
-                {articles.map((art) => {
-                  let btnClass = `btn btn-article article-color-${art}`;
+                {ARTICLE_BUTTONS.map((btn) => {
+                  const correctAnswer = getArticleAnswer(current);
+                  let btnClass = `btn btn-article ${btn.colorClass}`;
                   if (status !== "idle") {
-                    if (art === current.article) btnClass += " btn-correct";
-                    else if (art === chosen) btnClass += " btn-wrong";
-                    else btnClass += " btn-dim";
+                    if (btn.id === correctAnswer) btnClass += " btn-correct";
+                    else if (btn.id === chosen)   btnClass += " btn-wrong";
+                    else                           btnClass += " btn-dim";
                   }
                   return (
                     <button
-                      key={art}
+                      key={btn.id}
                       className={btnClass}
-                      onClick={() => handleGuess(art)}
+                      onClick={() => handleGuess(btn.id)}
                       disabled={status !== "idle"}
                     >
-                      {art}
+                      {btn.label}
                     </button>
                   );
                 })}
@@ -210,9 +221,7 @@ export default function Quiz({ chapter, onBack }: Props) {
               {status !== "idle" && (
                 <div
                   className={`feedback ${
-                    status === "correct"
-                      ? "feedback-correct"
-                      : "feedback-incorrect"
+                    status === "correct" ? "feedback-correct" : "feedback-incorrect"
                   }`}
                 >
                   <span className="feedback-icon">
@@ -227,6 +236,9 @@ export default function Quiz({ chapter, onBack }: Props) {
                       <strong>
                         {current.article} {current.german}
                       </strong>
+                      {current.gender === "plural" && (
+                        <span className="feedback-tag">plural</span>
+                      )}
                     </p>
                   </div>
                 </div>
@@ -240,9 +252,7 @@ export default function Quiz({ chapter, onBack }: Props) {
                 <span className="noun-word">
                   {current.article ? (
                     <>
-                      <span
-                        className={`noun-article-hint article-color-${current.article}`}
-                      >
+                      <span className={`noun-article-hint ${getGenderColorClass(current)}`}>
                         {current.article}
                       </span>{" "}
                       {current.german}
@@ -258,8 +268,8 @@ export default function Quiz({ chapter, onBack }: Props) {
                   let btnClass = "btn btn-translation";
                   if (status !== "idle") {
                     if (opt === current.english) btnClass += " btn-correct";
-                    else if (opt === chosen) btnClass += " btn-wrong";
-                    else btnClass += " btn-dim";
+                    else if (opt === chosen)     btnClass += " btn-wrong";
+                    else                         btnClass += " btn-dim";
                   }
                   return (
                     <button
@@ -277,9 +287,7 @@ export default function Quiz({ chapter, onBack }: Props) {
               {status !== "idle" && (
                 <div
                   className={`feedback ${
-                    status === "correct"
-                      ? "feedback-correct"
-                      : "feedback-incorrect"
+                    status === "correct" ? "feedback-correct" : "feedback-incorrect"
                   }`}
                 >
                   <span className="feedback-icon">
@@ -290,15 +298,9 @@ export default function Quiz({ chapter, onBack }: Props) {
                       {status === "correct" ? "Correct!" : "Not quite!"}
                     </p>
                     <p className="feedback-answer">
-                      {current.article && (
-                        <>
-                          <strong>
-                            {current.article} {current.german}
-                          </strong>{" "}
-                          ={" "}
-                        </>
-                      )}
-                      {!current.article && (
+                      {current.article ? (
+                        <><strong>{current.article} {current.german}</strong> = </>
+                      ) : (
                         <><strong>{current.german}</strong> = </>
                       )}
                       <strong>{current.english}</strong>

@@ -1,5 +1,8 @@
+export type Gender = "masculine" | "feminine" | "neuter" | "plural";
+
 export type Word = {
   article?: "der" | "die" | "das";
+  gender?: Gender;
   german: string;
   english: string;
 };
@@ -9,6 +12,19 @@ export type Chapter = {
   title: string;
   words: Word[];
 };
+
+export function getArticleAnswer(word: Word): string {
+  if (word.gender === "plural") return "die (pl.)";
+  return word.article!;
+}
+
+export function getGenderColorClass(word: Word): string {
+  if (!word.article) return "";
+  if (word.article === "der") return "article-color-der";
+  if (word.article === "das") return "article-color-das";
+  if (word.gender === "plural") return "article-color-die-pl";
+  return "article-color-die-f";
+}
 
 export const chapters: Chapter[] = [
   {
@@ -33,32 +49,42 @@ export const chapters: Chapter[] = [
       { german: "Österreich", english: "Austria" },
       { german: "Spanien", english: "Spain" },
       { german: "Frankreich", english: "France" },
-      { german: "Türkei", english: "Turkey" },
-      { article: "die", german: "Schweiz", english: "Switzerland" },
-      { article: "die", german: "USA", english: "USA" },
       { german: "Eritrea", english: "Eritrea" },
+      { article: "die", gender: "feminine", german: "Schweiz", english: "Switzerland" },
+      { article: "die", gender: "feminine", german: "Türkei", english: "Turkey" },
+      { article: "die", gender: "plural",   german: "USA", english: "USA" },
+      { article: "die", gender: "plural",   german: "Niederlande", english: "Netherlands" },
+      { article: "die", gender: "plural",   german: "Philippinen", english: "Philippines" },
+      { article: "die", gender: "feminine", german: "Slowakei", english: "Slovakia" },
+      { article: "die", gender: "feminine", german: "Ukraine", english: "Ukraine" },
+      { article: "die", gender: "feminine", german: "Mongolei", english: "Mongolia" },
+      { article: "der", gender: "masculine", german: "Iran", english: "Iran" },
+      { article: "der", gender: "masculine", german: "Irak", english: "Iraq" },
+      { article: "der", gender: "masculine", german: "Sudan", english: "Sudan" },
+      { article: "der", gender: "masculine", german: "Libanon", english: "Lebanon" },
+      { article: "der", gender: "masculine", german: "Kongo", english: "Congo" },
     ],
   },
   {
     number: 2,
     title: "Professions & Personal Info",
     words: [
-      { article: "der", german: "Ingenieur", english: "engineer" },
-      { article: "die", german: "Ingenieurin", english: "female engineer" },
-      { article: "der", german: "Student", english: "student" },
-      { article: "die", german: "Studentin", english: "female student" },
-      { article: "der", german: "Kellner", english: "waiter" },
-      { article: "die", german: "Kellnerin", english: "waitress" },
-      { article: "der", german: "Arzt", english: "doctor" },
-      { article: "die", german: "Ärztin", english: "female doctor" },
-      { article: "der", german: "Lehrer", english: "teacher" },
-      { article: "die", german: "Lehrerin", english: "female teacher" },
-      { article: "der", german: "Verkäufer", english: "salesman" },
-      { article: "die", german: "Verkäuferin", english: "saleswoman" },
-      { article: "der", german: "Friseur", english: "hairdresser" },
-      { article: "die", german: "Friseurin", english: "female hairdresser" },
-      { article: "der", german: "Paketsteller", english: "parcel delivery worker" },
-      { article: "das", german: "Kind", english: "child" },
+      { article: "der", gender: "masculine", german: "Ingenieur", english: "engineer" },
+      { article: "die", gender: "feminine",  german: "Ingenieurin", english: "female engineer" },
+      { article: "der", gender: "masculine", german: "Student", english: "student" },
+      { article: "die", gender: "feminine",  german: "Studentin", english: "female student" },
+      { article: "der", gender: "masculine", german: "Kellner", english: "waiter" },
+      { article: "die", gender: "feminine",  german: "Kellnerin", english: "waitress" },
+      { article: "der", gender: "masculine", german: "Arzt", english: "doctor" },
+      { article: "die", gender: "feminine",  german: "Ärztin", english: "female doctor" },
+      { article: "der", gender: "masculine", german: "Lehrer", english: "teacher" },
+      { article: "die", gender: "feminine",  german: "Lehrerin", english: "female teacher" },
+      { article: "der", gender: "masculine", german: "Verkäufer", english: "salesman" },
+      { article: "die", gender: "feminine",  german: "Verkäuferin", english: "saleswoman" },
+      { article: "der", gender: "masculine", german: "Friseur", english: "hairdresser" },
+      { article: "die", gender: "feminine",  german: "Friseurin", english: "female hairdresser" },
+      { article: "der", gender: "masculine", german: "Paketsteller", english: "parcel delivery worker" },
+      { article: "das", gender: "neuter",    german: "Kind", english: "child" },
       { german: "arbeiten", english: "to work" },
       { german: "wohnen", english: "to live / reside" },
       { german: "leben", english: "to live" },
@@ -73,25 +99,25 @@ export const chapters: Chapter[] = [
     number: 3,
     title: "Family & Languages",
     words: [
-      { article: "der", german: "Vater", english: "father" },
-      { article: "die", german: "Mutter", english: "mother" },
-      { article: "der", german: "Bruder", english: "brother" },
-      { article: "die", german: "Schwester", english: "sister" },
-      { article: "die", german: "Oma", english: "grandma" },
-      { article: "der", german: "Opa", english: "grandpa" },
-      { article: "der", german: "Onkel", english: "uncle" },
-      { article: "die", german: "Tante", english: "aunt" },
-      { article: "der", german: "Sohn", english: "son" },
-      { article: "die", german: "Tochter", english: "daughter" },
-      { article: "die", german: "Eltern", english: "parents" },
-      { article: "die", german: "Großeltern", english: "grandparents" },
-      { article: "der", german: "Großvater", english: "grandfather" },
-      { article: "die", german: "Großmutter", english: "grandmother" },
-      { article: "der", german: "Enkel", english: "grandson" },
-      { article: "die", german: "Enkelin", english: "granddaughter" },
-      { article: "der", german: "Ehemann", english: "husband" },
-      { article: "die", german: "Ehefrau", english: "wife" },
-      { article: "die", german: "Sprache", english: "language" },
+      { article: "der", gender: "masculine", german: "Vater", english: "father" },
+      { article: "die", gender: "feminine",  german: "Mutter", english: "mother" },
+      { article: "der", gender: "masculine", german: "Bruder", english: "brother" },
+      { article: "die", gender: "feminine",  german: "Schwester", english: "sister" },
+      { article: "die", gender: "feminine",  german: "Oma", english: "grandma" },
+      { article: "der", gender: "masculine", german: "Opa", english: "grandpa" },
+      { article: "der", gender: "masculine", german: "Onkel", english: "uncle" },
+      { article: "die", gender: "feminine",  german: "Tante", english: "aunt" },
+      { article: "der", gender: "masculine", german: "Sohn", english: "son" },
+      { article: "die", gender: "feminine",  german: "Tochter", english: "daughter" },
+      { article: "die", gender: "plural",    german: "Eltern", english: "parents" },
+      { article: "die", gender: "plural",    german: "Großeltern", english: "grandparents" },
+      { article: "der", gender: "masculine", german: "Großvater", english: "grandfather" },
+      { article: "die", gender: "feminine",  german: "Großmutter", english: "grandmother" },
+      { article: "der", gender: "masculine", german: "Enkel", english: "grandson" },
+      { article: "die", gender: "feminine",  german: "Enkelin", english: "granddaughter" },
+      { article: "der", gender: "masculine", german: "Ehemann", english: "husband" },
+      { article: "die", gender: "feminine",  german: "Ehefrau", english: "wife" },
+      { article: "die", gender: "feminine",  german: "Sprache", english: "language" },
       { german: "Deutsch", english: "German" },
       { german: "Englisch", english: "English" },
       { german: "Spanisch", english: "Spanish" },
