@@ -118,6 +118,7 @@ export const chapters: Chapter[] = [
       { article: "der", gender: "masculine", german: "Ehemann", english: "husband" },
       { article: "die", gender: "feminine",  german: "Ehefrau", english: "wife" },
       { article: "die", gender: "feminine",  german: "Sprache", english: "language" },
+      { article: "die", gender: "plural",    german: "Geschwister", english: "siblings" },
       { german: "Deutsch", english: "German" },
       { german: "Englisch", english: "English" },
       { german: "Spanisch", english: "Spanish" },

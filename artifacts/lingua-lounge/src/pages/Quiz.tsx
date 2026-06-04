@@ -193,7 +193,6 @@ export default function Quiz({ chapter, onBack }: Props) {
 
               <div className="noun-display">
                 <span className="noun-word">{current.german}</span>
-                <span className="noun-english">{current.english}</span>
               </div>
 
               <div className="buttons-grid">
