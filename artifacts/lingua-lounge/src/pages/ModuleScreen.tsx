@@ -31,10 +31,7 @@ export default function ModuleScreen({ moduleNumber, onBack, onSelectChapter, on
     <div className="screen start-screen">
       <div className="start-hero module-hero">
         <div className="flag-bar" />
-        <button className="module-back-btn" onClick={onBack}>
-          ‹ All Modules
-        </button>
-        <div className="start-logo-row" style={{ marginTop: 4 }}>
+        <div className="start-logo-row">
           <span className="logo-icon">🇩🇪</span>
           <span className="logo-text">LinguaLounge</span>
         </div>
@@ -44,6 +41,9 @@ export default function ModuleScreen({ moduleNumber, onBack, onSelectChapter, on
       </div>
 
       <div className="start-body">
+        <button className="module-back-link" onClick={onBack}>
+          ← Back to All Modules
+        </button>
         {!isActive ? (
           <div className="coming-soon-wrap">
             <div className="coming-soon-icon">🚧</div>

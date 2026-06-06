@@ -556,27 +556,29 @@ body {
   padding-bottom: 28px;
 }
 
-.module-back-btn {
-  font-size: 13px;
+.module-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
   font-weight: 600;
-  color: rgba(255,255,255,0.6);
+  color: var(--text-muted);
   background: none;
   border: none;
   cursor: pointer;
   font-family: inherit;
-  padding: 0 24px;
-  margin-bottom: 6px;
-  display: block;
+  padding: 0 4px;
+  margin-bottom: 24px;
   transition: color 0.15s;
 }
 
-.module-back-btn:hover {
-  color: rgba(255,255,255,0.9);
+.module-back-link:hover {
+  color: var(--text);
 }
 
 .module-hero-subtitle {
   font-size: 15px;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.82);
   font-weight: 500;
   padding: 6px 24px 0;
 }
