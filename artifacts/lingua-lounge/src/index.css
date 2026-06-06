@@ -516,6 +516,101 @@ body {
   line-height: 1;
 }
 
+/* Module cards (home screen) */
+.module-card {
+  padding: 22px 20px;
+}
+
+.module-card-inactive {
+  opacity: 0.55;
+}
+
+.module-card-inactive:hover {
+  transform: none;
+  box-shadow: var(--shadow);
+}
+
+.module-card-description {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 2px;
+}
+
+.module-card-badge {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 2px 8px;
+}
+
+/* Module page hero */
+.module-hero {
+  padding-bottom: 28px;
+}
+
+.module-back-btn {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.6);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0 24px;
+  margin-bottom: 6px;
+  display: block;
+  transition: color 0.15s;
+}
+
+.module-back-btn:hover {
+  color: rgba(255,255,255,0.9);
+}
+
+.module-hero-subtitle {
+  font-size: 15px;
+  color: rgba(255,255,255,0.6);
+  font-weight: 500;
+  padding: 6px 24px 0;
+}
+
+/* Coming soon placeholder */
+.coming-soon-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  text-align: center;
+  gap: 12px;
+}
+
+.coming-soon-icon {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.coming-soon-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+
+.coming-soon-body {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 260px;
+}
+
 /* Back button */
 .back-btn {
   font-size: 14px;

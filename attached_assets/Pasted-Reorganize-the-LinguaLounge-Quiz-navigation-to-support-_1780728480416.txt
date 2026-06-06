@@ -1,0 +1,152 @@
+Reorganize the LinguaLounge Quiz navigation to support future growth.
+
+GOAL
+
+Create a new homepage that serves as a Module Selection screen.
+
+Do NOT change the existing quiz functionality, question banks, scoring, styling, colors, animations, or quiz logic.
+
+Only reorganize the navigation structure.
+
+NEW HOMEPAGE
+
+Replace the current Module 1 page with a Module Selection page.
+
+Display:
+
+🇩🇪 LinguaLounge
+A1.1 German Quiz
+
+MODULE 1
+Greetings, Family & Personal Info
+
+MODULE 2
+Furniture, Objects & Appointments
+
+MODULE 3
+(placeholder)
+
+MODULE 4
+(placeholder)
+
+Each module should be displayed as a clickable card using the same visual style already used throughout the application.
+
+MODULE PAGES
+
+When a user clicks a module card, open that module's page.
+
+Module pages should contain:
+
+Vocabulary Quizzes
+
+* Chapter quizzes
+* Module grammar practice
+
+Example:
+
+MODULE 1
+
+CH. 1 — Greetings & Introductions
+CH. 2 — Professions & Personal Info
+CH. 3 — Family & Languages
+
+⭐ Module 1 Grammar Practice
+
+This should look exactly like the current Module 1 page.
+
+MOVE EXISTING CONTENT
+
+Take the current page content and place it inside the new Module 1 page.
+
+Do NOT modify:
+
+* Chapter 1 vocabulary quiz
+* Chapter 2 vocabulary quiz
+* Chapter 3 vocabulary quiz
+* Module 1 Grammar Practice
+
+Keep all question banks exactly as they are.
+
+PLACEHOLDER MODULES
+
+For now:
+
+Module 2
+Module 3
+Module 4
+
+can contain placeholder pages that simply display:
+
+"Coming Soon"
+
+These pages will be expanded later.
+
+NAVIGATION
+
+Add:
+
+Home → Module Page
+Module Page → Quiz
+Quiz → Module Page
+
+Back buttons should always return to the correct previous screen.
+
+DESIGN REQUIREMENTS
+
+Keep:
+
+* Existing LinguaLounge branding
+* Existing colors
+* Existing cards
+* Existing typography
+* Existing spacing
+* Existing quiz design
+
+The app should feel identical, only with a better navigation hierarchy.
+
+TESTING
+
+After implementation, verify:
+
+✓ Homepage loads correctly
+
+✓ Module 1 card opens correctly
+
+✓ Chapter 1 quiz still works
+
+✓ Chapter 2 quiz still works
+
+✓ Chapter 3 quiz still works
+
+✓ Module 1 Grammar Practice still works
+
+✓ All scores still calculate correctly
+
+✓ Progress bars still work
+
+✓ Results screens still work
+
+✓ Back buttons return to the proper screen
+
+✓ Mobile layout remains responsive
+
+GOAL FOR FUTURE EXPANSION
+
+The navigation structure should be ready for:
+
+A1.1
+
+* Module 1
+* Module 2
+* Module 3
+* Module 4
+
+Future levels:
+
+* A1.2
+* A2.1
+* A2.2
+* B1.1
+* B1.2
+
+Design the navigation so additional modules can easily be added later without restructuring the application again.
