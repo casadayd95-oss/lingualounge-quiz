@@ -1,0 +1,111 @@
+Add Chapter 6 to Module 2.
+
+IMPORTANT:
+
+* Do NOT modify Module 1.
+* Do NOT modify Module 2 Chapter 4.
+* Do NOT modify Module 2 Chapter 5.
+* Do NOT add Module 2 grammar yet.
+* Do NOT add Communication Phrases yet.
+* Keep all existing styling, navigation, quiz behavior, score tracking, progress bars, feedback cards, result screens, and mobile responsiveness unchanged.
+* Do NOT create duplicate vocabulary entries inside Chapter 6.
+* If a word already exists in Chapter 4 or Chapter 5, do not duplicate it in Chapter 6.
+
+CHAPTER
+
+CH. 6 — Office, Technology & Appointments
+
+Add this as a new vocabulary quiz card inside Module 2 below Chapter 5.
+
+VOCABULARY
+
+Nouns with articles:
+
+* das Büro — office
+* der Computer — computer
+* der Laptop — laptop
+* das Tablet — tablet
+* die E-Mail — email
+* die Nachricht — message
+* das Passwort — password
+* der Termin — appointment
+* der Kalender — calendar
+* der Bildschirm — screen / monitor
+* die Tastatur — keyboard
+* die Maus — mouse
+* der Drucker — printer
+* die Liste — list
+* die Visitenkarte — business card
+* die Adresse — address
+* die Telefonnummer — phone number
+* die E-Mail-Adresse — email address
+* der Name — name
+* die Firma — company
+* der Empfang — reception
+* der Albtraum — nightmare
+
+Other vocabulary:
+
+* Hunger — hunger
+
+Verbs:
+
+* arbeiten — to work
+* anrufen — to call
+* telefonieren — to make a phone call
+* schreiben — to write
+* schicken — to send
+* brauchen — to need
+* machen — to do / make
+* haben — to have
+* sein — to be
+
+QUIZ MODES
+
+Article Mode:
+
+* Use only nouns with articles.
+* User chooses der / die / das / die (pl.).
+* Do NOT include Hunger in Article Mode.
+* Keep article colors:
+
+  * der = blue
+  * die feminine = red
+  * das = green
+  * die plural = yellow
+
+Translation Mode:
+
+* Use all Chapter 6 vocabulary.
+* Include nouns, other vocabulary, and verbs.
+* Show the German word and ask for the English translation.
+* Use multiple choice answers.
+
+DISPLAY
+
+Show on Module 2 page:
+
+CH. 6
+Office, Technology & Appointments
+
+Show correct word count and noun count.
+
+NAVIGATION
+
+Homepage → Module 2 → Chapter 6 Quiz
+
+Back buttons:
+Chapter 6 Quiz → Module 2
+Module 2 → Homepage
+
+TESTING
+
+Verify:
+
+* Chapter 4 still works
+* Chapter 5 still works
+* Chapter 6 Article Mode works
+* Chapter 6 Translation Mode works
+* No duplicate words appear inside Chapter 6
+* Module 1 is unchanged
+* Mobile layout still looks clean
