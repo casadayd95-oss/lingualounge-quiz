@@ -1,0 +1,100 @@
+Add Chapter 4 vocabulary quiz inside Module 2.
+
+IMPORTANT:
+
+* Do NOT modify Module 1.
+* Do NOT modify the existing Module 1 vocabulary quizzes.
+* Do NOT modify Module 1 Grammar Practice.
+* Do NOT add Module 2 grammar yet.
+* Keep the same design, layout, colors, scoring, progress bar, answer feedback, result screen, and mobile responsiveness as Module 1.
+
+MODULE 2 STRUCTURE
+
+Update the Module 2 page so it is no longer just "Coming Soon."
+
+Module 2 should display:
+
+MODULE 2 — Furniture, Objects & Appointments
+
+Vocabulary Quizzes
+
+CH. 4 — Furniture, Shopping & Prices
+
+For now, Chapter 5 and Chapter 6 can remain hidden or show as "Coming Soon."
+
+CHAPTER 4 VOCABULARY
+
+Create a Chapter 4 vocabulary quiz using these words:
+
+Nouns with articles:
+
+* das Bild — picture / image
+* der Stuhl — chair
+* der Tisch — table
+* das Sofa — sofa
+* die Lampe — lamp
+* das Regal — shelf
+* der Schrank — cabinet / wardrobe
+* der Teppich — rug / carpet
+* das Bett — bed
+* der Sessel — armchair
+* der Euro — euro
+* der Preis — price
+* das Sonderangebot — special offer
+
+Adjectives / other vocabulary:
+
+* schön — beautiful
+* teuer — expensive
+* billig — cheap
+* praktisch — practical
+* groß — big
+* klein — small
+* alt — old
+* neu — new
+
+QUIZ MODES
+
+Article Mode:
+
+* Only use nouns with articles.
+* Ask users to choose the correct article.
+* Keep article color rules:
+
+  * der = blue
+  * die feminine = red
+  * das = green
+  * die plural = yellow
+
+Translation Mode:
+
+* Use all Chapter 4 vocabulary items.
+* Show the German word and ask for the English translation.
+* Use multiple choice answers like the existing translation quizzes.
+
+NAVIGATION
+
+The flow should be:
+
+Homepage → Module 2 → Chapter 4 Quiz
+
+Back buttons should work correctly:
+
+Chapter 4 Quiz → Module 2
+Module 2 → Homepage
+
+TESTING
+
+After implementation, verify:
+
+* Homepage still works
+* Module 1 still works
+* Module 2 opens correctly
+* Chapter 4 opens correctly
+* Chapter 4 Article Mode works
+* Chapter 4 Translation Mode works
+* Score tracking works
+* Progress bar works
+* Results screen works
+* Back buttons return to the correct screens
+* Mobile layout still looks clean

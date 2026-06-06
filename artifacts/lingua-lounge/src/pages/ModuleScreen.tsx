@@ -7,22 +7,22 @@ type Props = {
   onGrammar: () => void;
 };
 
-const MODULE_META: Record<number, { title: string; description: string }> = {
-  1: { title: "Module 1", description: "Greetings, Family & Personal Info" },
-  2: { title: "Module 2", description: "Furniture, Objects & Appointments" },
-  3: { title: "Module 3", description: "Coming Soon" },
-  4: { title: "Module 4", description: "Coming Soon" },
+const MODULE_META: Record<number, { title: string; description: string; hasGrammar: boolean }> = {
+  1: { title: "Module 1", description: "Greetings, Family & Personal Info", hasGrammar: true },
+  2: { title: "Module 2", description: "Furniture, Objects & Appointments", hasGrammar: false },
+  3: { title: "Module 3", description: "Coming Soon", hasGrammar: false },
+  4: { title: "Module 4", description: "Coming Soon", hasGrammar: false },
 };
 
 const MODULE_CHAPTERS: Record<number, number[]> = {
   1: [1, 2, 3],
-  2: [],
+  2: [4],
   3: [],
   4: [],
 };
 
 export default function ModuleScreen({ moduleNumber, onBack, onSelectChapter, onGrammar }: Props) {
-  const meta = MODULE_META[moduleNumber] ?? { title: `Module ${moduleNumber}`, description: "" };
+  const meta = MODULE_META[moduleNumber] ?? { title: `Module ${moduleNumber}`, description: "", hasGrammar: false };
   const chapterNums = MODULE_CHAPTERS[moduleNumber] ?? [];
   const moduleChapters = chapters.filter((ch) => chapterNums.includes(ch.number));
   const isActive = chapterNums.length > 0;
@@ -80,20 +80,24 @@ export default function ModuleScreen({ moduleNumber, onBack, onSelectChapter, on
               })}
             </div>
 
-            <div className="section-divider" />
+            {meta.hasGrammar && (
+              <>
+                <div className="section-divider" />
 
-            <p className="module-label">Grammar Practice</p>
+                <p className="module-label">Grammar Practice</p>
 
-            <button className="grammar-practice-btn" onClick={onGrammar}>
-              <div className="grammar-btn-left">
-                <span className="grammar-btn-star">⭐</span>
-                <div>
-                  <span className="grammar-btn-title">Module {moduleNumber} Grammar Practice</span>
-                  <span className="grammar-btn-meta">20 questions · all grammar topics</span>
-                </div>
-              </div>
-              <span className="chapter-arrow">›</span>
-            </button>
+                <button className="grammar-practice-btn" onClick={onGrammar}>
+                  <div className="grammar-btn-left">
+                    <span className="grammar-btn-star">⭐</span>
+                    <div>
+                      <span className="grammar-btn-title">Module {moduleNumber} Grammar Practice</span>
+                      <span className="grammar-btn-meta">20 questions · all grammar topics</span>
+                    </div>
+                  </div>
+                  <span className="chapter-arrow">›</span>
+                </button>
+              </>
+            )}
           </>
         )}
       </div>
