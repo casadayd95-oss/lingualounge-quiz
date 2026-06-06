@@ -3,6 +3,7 @@ import HomeScreen from "@/pages/HomeScreen";
 import ModuleScreen from "@/pages/ModuleScreen";
 import Quiz from "@/pages/Quiz";
 import GrammarQuiz from "@/pages/GrammarQuiz";
+import GrammarQuiz2 from "@/pages/GrammarQuiz2";
 import { type Chapter } from "@/data/chapters";
 
 type View = "home" | "module" | "quiz" | "grammar";
@@ -32,6 +33,9 @@ export default function App() {
   }
 
   if (view === "grammar") {
+    if (moduleNumber === 2) {
+      return <GrammarQuiz2 onBack={goModule} />;
+    }
     return <GrammarQuiz onBack={goModule} />;
   }
 

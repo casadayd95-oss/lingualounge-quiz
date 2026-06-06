@@ -9,7 +9,7 @@ type Props = {
 
 const MODULE_META: Record<number, { title: string; description: string; hasGrammar: boolean }> = {
   1: { title: "Module 1", description: "Greetings, Family & Personal Info", hasGrammar: true },
-  2: { title: "Module 2", description: "Furniture, Objects & Appointments", hasGrammar: false },
+  2: { title: "Module 2", description: "Furniture, Objects & Appointments", hasGrammar: true },
   3: { title: "Module 3", description: "Coming Soon", hasGrammar: false },
   4: { title: "Module 4", description: "Coming Soon", hasGrammar: false },
 };

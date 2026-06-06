@@ -1,0 +1,303 @@
+Add Module 2 Grammar Practice.
+
+IMPORTANT:
+
+* Do NOT modify Module 1.
+* Do NOT modify Module 2 vocabulary quizzes.
+* Do NOT change existing quiz logic, styling, navigation, score tracking, progress bars, feedback cards, results screens, or mobile responsiveness.
+* Add grammar practice as a separate section below Module 2 Vocabulary.
+
+SECTION
+
+Add:
+
+⭐ Module 2 Grammar Practice
+20 questions · all grammar topics
+
+This should work exactly like Module 1 Grammar Practice.
+
+QUESTION BANK
+
+Create approximately 75–100 grammar questions.
+
+Each playthrough should randomly generate 20 questions.
+
+Balance the quiz so every session includes at least one question from each grammar category.
+
+MODULE 2 GRAMMAR TOPICS
+
+Use only grammar and structures from Module 2 (Chapters 4–6).
+
+1. Verb Conjugation — sehen
+
+Examples:
+
+Ich _____ den Tisch.
+→ sehe
+
+Du _____ das Bild.
+→ siehst
+
+Er _____ die Lampe.
+→ sieht
+
+Wir _____ den Kalender.
+→ sehen
+
+2. Definite Articles — Nominativ
+
+Practice:
+der / die / das / die plural
+
+Examples:
+
+Das ist _____ Tisch.
+→ der
+
+Das ist _____ Lampe.
+→ die
+
+Das ist _____ Bild.
+→ das
+
+Das sind _____ Bücher.
+→ die
+
+3. Indefinite Articles — Nominativ
+
+Practice:
+ein / eine
+
+Examples:
+
+Das ist _____ Tisch.
+→ ein
+
+Das ist _____ Uhr.
+→ eine
+
+Das ist _____ Buch.
+→ ein
+
+4. Negative Articles — Nominativ
+
+Practice:
+kein / keine / kein / keine plural
+
+Examples:
+
+Das ist _____ Tisch.
+→ kein
+
+Das ist _____ Lampe.
+→ keine
+
+Das ist _____ Bild.
+→ kein
+
+Das sind _____ Termine.
+→ keine
+
+5. Definite Articles — Akkusativ
+
+Practice:
+der → den
+
+Examples:
+
+Ich sehe _____ Tisch.
+→ den
+
+Ich sehe _____ Lampe.
+→ die
+
+Ich sehe _____ Bild.
+→ das
+
+Ich sehe _____ Bücher.
+→ die
+
+6. Indefinite Articles — Akkusativ
+
+Practice:
+einen / eine / ein
+
+Examples:
+
+Ich habe _____ Kalender.
+→ einen
+
+Ich brauche _____ Tasche.
+→ eine
+
+Ich sehe _____ Tablet.
+→ ein
+
+7. Negative Articles — Akkusativ
+
+Practice:
+keinen / keine / kein
+
+Examples:
+
+Ich habe _____ Termin.
+→ keinen
+
+Ich brauche _____ Tasche.
+→ keine
+
+Ich sehe _____ Tablet.
+→ kein
+
+8. Singular → Plural
+
+Use Module 2 vocabulary only.
+
+Examples:
+
+das Buch → die Bücher
+
+der Laptop → die Laptops
+
+die Maus → die Mäuse
+
+das Passwort → die Passwörter
+
+die Nachricht → die Nachrichten
+
+das Tablet → die Tablets
+
+9. Personal Pronouns
+
+Practice:
+er / sie / es / sie plural
+
+Examples:
+
+der Stuhl → er
+
+die Lampe → sie
+
+das Bild → es
+
+die Bücher → sie
+
+10. Preposition aus
+
+Examples:
+
+Die Flasche ist _____ Plastik.
+→ aus
+
+Der Tisch ist _____ Holz.
+→ aus
+
+Die Brille ist _____ Metall.
+→ aus
+
+11. Asking Prices
+
+Examples:
+
+_____ kostet der Stuhl?
+→ Wie viel
+
+Was kostet das Sofa?
+→ Es kostet 399 Euro.
+
+12. Describing Objects
+
+Examples:
+
+Der Stuhl ist nicht schön.
+→ hässlich
+
+Das Sofa ist nicht teuer.
+→ günstig
+
+Der Schrank ist nicht alt.
+→ modern
+
+Das Regal ist groß und _____.
+→ praktisch
+
+13. Verb Usage — finden
+
+Examples:
+
+Ich _____ das Sofa schön.
+→ finde
+
+Wir _____ den Preis gut.
+→ finden
+
+14. Verb Usage — kosten
+
+Examples:
+
+Das Buch _____ zehn Euro.
+→ kostet
+
+Der Schrank _____ 99 Euro.
+→ kostet
+
+QUESTION TYPES
+
+Use a mix of:
+
+* Multiple choice
+* Fill-in-the-blank
+* Article selection
+* Akkusativ article selection
+* Singular/plural matching
+* Personal pronoun matching
+* Verb conjugation
+* Sentence completion
+* Price questions
+* Object description questions
+
+DO NOT INCLUDE
+
+* Email address questions
+* Spelling questions
+* Telephone phrases
+* Appointment phrases
+* Communication phrase exercises
+
+These will be added later in a separate Communication Practice section.
+
+DISPLAY
+
+On the Module 2 page add:
+
+MODULE 2 — GRAMMAR PRACTICE
+
+⭐ Module 2 Grammar Practice
+20 questions · all grammar topics
+
+RESULTS SCREEN
+
+Display:
+
+Grammar Score:
+X / 20
+
+Buttons:
+
+* Play Again
+* Back to Module 2
+
+TESTING
+
+Verify:
+
+* Module 1 remains unchanged
+* Module 2 vocabulary remains unchanged
+* Module 2 Grammar Practice opens correctly
+* 20 questions generate per session
+* Every session includes at least one question from each grammar category
+* Score tracking works
+* Progress bar works
+* Results screen works
+* Back buttons work correctly
+* Mobile layout remains clean
