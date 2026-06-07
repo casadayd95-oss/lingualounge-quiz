@@ -1,8 +1,9 @@
 export type GrammarQuestion = {
   category: string;
   prompt: string;
-  options: [string, string, string, string];
+  options: string[];
   answer: string;
+  acceptedAnswers?: string[];
 };
 
 export const grammarBank: GrammarQuestion[] = [

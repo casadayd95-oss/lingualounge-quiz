@@ -29,6 +29,20 @@ function renderPrompt(text: string) {
   );
 }
 
+function isAccepted(opt: string, q: GrammarQuestion): boolean {
+  if (q.acceptedAnswers && q.acceptedAnswers.length > 0) {
+    return q.acceptedAnswers.includes(opt);
+  }
+  return opt === q.answer;
+}
+
+function possibleAnswersLabel(q: GrammarQuestion): string {
+  if (q.acceptedAnswers && q.acceptedAnswers.length > 1) {
+    return q.acceptedAnswers.join(" / ");
+  }
+  return q.answer;
+}
+
 type Status = "idle" | "correct" | "incorrect";
 
 export default function GrammarQuiz2({ onBack }: Props) {
@@ -49,11 +63,11 @@ export default function GrammarQuiz2({ onBack }: Props) {
   const handleGuess = useCallback(
     (opt: string) => {
       if (status !== "idle") return;
-      const isCorrect = opt === current.answer;
+      const correct = isAccepted(opt, current);
       setChosen(opt);
-      setStatus(isCorrect ? "correct" : "incorrect");
+      setStatus(correct ? "correct" : "incorrect");
       setScore((s) => ({
-        correct: s.correct + (isCorrect ? 1 : 0),
+        correct: s.correct + (correct ? 1 : 0),
         total: s.total + 1,
       }));
     },
@@ -114,6 +128,9 @@ export default function GrammarQuiz2({ onBack }: Props) {
     );
   }
 
+  const hasMultiple = (current.acceptedAnswers?.length ?? 0) > 1;
+  const label = possibleAnswersLabel(current);
+
   return (
     <div className="screen">
       <header className="header">
@@ -151,9 +168,9 @@ export default function GrammarQuiz2({ onBack }: Props) {
             {shuffledOptions.map((opt) => {
               let cls = "btn btn-translation";
               if (status !== "idle") {
-                if (opt === current.answer) cls += " btn-correct";
-                else if (opt === chosen)    cls += " btn-wrong";
-                else                        cls += " btn-dim";
+                if (isAccepted(opt, current)) cls += " btn-correct";
+                else if (opt === chosen)       cls += " btn-wrong";
+                else                           cls += " btn-dim";
               }
               return (
                 <button
@@ -182,7 +199,11 @@ export default function GrammarQuiz2({ onBack }: Props) {
                   {status === "correct" ? "Correct!" : "Not quite!"}
                 </p>
                 <p className="feedback-answer">
-                  The answer is <strong>{current.answer}</strong>
+                  {hasMultiple ? (
+                    <>Possible answers: <strong>{label}</strong></>
+                  ) : (
+                    <>The answer is <strong>{label}</strong></>
+                  )}
                 </p>
               </div>
             </div>

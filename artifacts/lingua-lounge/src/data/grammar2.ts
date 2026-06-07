@@ -113,12 +113,12 @@ export const grammar2Bank: GrammarQuestion[] = [
   { category: "Asking Prices", prompt: "Was kostet die Lampe?\n→ _____ kostet 29 Euro.", answer: "Sie",      options: ["Er", "Es", "Das", "Sie"] },
 
   // ── 12. Describing Objects ────────────────────────────────────────────
-  { category: "Describing Objects", prompt: "Der Stuhl ist nicht schön. → Er ist _____.",   answer: "hässlich", options: ["schön", "hässlich", "günstig", "modern"] },
-  { category: "Describing Objects", prompt: "Das Sofa ist nicht teuer. → Es ist _____.",    answer: "günstig",  options: ["teuer", "günstig", "hässlich", "klein"] },
-  { category: "Describing Objects", prompt: "Der Schrank ist nicht alt. → Er ist _____.",   answer: "modern",   options: ["alt", "modern", "neu", "groß"] },
-  { category: "Describing Objects", prompt: "Das Regal ist nicht klein. → Es ist _____.",   answer: "groß",     options: ["groß", "klein", "billig", "neu"] },
-  { category: "Describing Objects", prompt: "Die Lampe ist nicht neu. → Sie ist _____.",    answer: "alt",      options: ["neu", "alt", "modern", "schön"] },
-  { category: "Describing Objects", prompt: "Der Tisch ist nicht günstig. → Er ist _____.", answer: "teuer",    options: ["günstig", "teuer", "billig", "hässlich"] },
+  { category: "Describing Objects", prompt: "Der Stuhl ist nicht schön. → Er ist _____.",   answer: "hässlich",  options: ["schön", "hässlich", "günstig", "modern"] },
+  { category: "Describing Objects", prompt: "Das Sofa ist nicht teuer. → Es ist _____.",    answer: "günstig",   options: ["teuer", "günstig", "billig", "hässlich"],  acceptedAnswers: ["günstig", "billig"] },
+  { category: "Describing Objects", prompt: "Der Schrank ist nicht alt. → Er ist _____.",   answer: "neu",       options: ["alt", "modern", "neu", "groß"],             acceptedAnswers: ["neu", "modern"] },
+  { category: "Describing Objects", prompt: "Das Regal ist nicht klein. → Es ist _____.",   answer: "groß",      options: ["groß", "klein", "billig", "neu"] },
+  { category: "Describing Objects", prompt: "Die Lampe ist nicht neu. → Sie ist _____.",    answer: "alt",       options: ["neu", "alt", "modern", "schön"] },
+  { category: "Describing Objects", prompt: "Der Tisch ist nicht günstig. → Er ist _____.", answer: "teuer",     options: ["günstig", "teuer", "billig", "hässlich"] },
   { category: "Describing Objects", prompt: "Das Sofa ist groß und _____.",                 answer: "praktisch", options: ["hässlich", "billig", "teuer", "praktisch"] },
 
   // ── 13. Verb Usage — finden ───────────────────────────────────────────
