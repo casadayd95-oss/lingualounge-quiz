@@ -1,0 +1,101 @@
+Fix Module 2 Grammar Practice bugs.
+
+IMPORTANT:
+- Do NOT modify Module 1.
+- Do NOT modify vocabulary quizzes.
+- Do NOT modify styling or navigation.
+- Only fix Module 2 Grammar Practice question/answer generation.
+
+BUG 1 — Wrong repeated answer option
+
+Problem:
+"die Tablets" appears as an answer option in unrelated Module 2 Grammar questions.
+
+Examples:
+- Ich suche _____ Drucker.
+- Die Stühle _____ 50 Euro.
+- die Uhr → _____
+- Das ist _____ Drucker.
+
+"die Tablets" should not appear unless the actual question is about Tablet/Tablets.
+
+Fix:
+- Remove any hardcoded/default answer option like "die Tablets".
+- Generate answer choices from the current question only.
+- Ensure answer options are relevant to the current category.
+- Never repeat the correct answer twice.
+- Never include duplicate answer choices.
+
+BUG 2 — Gender hint makes article questions too easy
+
+Problem:
+Questions like:
+Das ist _____ Drucker. (masculine)
+
+This gives away the answer.
+
+Fix:
+Remove gender hints from all article questions.
+
+Bad:
+Das ist _____ Drucker. (masculine)
+
+Good:
+Das ist _____ Drucker.
+
+Bad:
+Das ist _____ Lampe. (feminine)
+
+Good:
+Das ist _____ Lampe.
+
+BUG 3 — Wrong distractors in grammar options
+
+For each grammar category, answer choices must match the category.
+
+Examples:
+
+Definite Article — Nominativ:
+Options should only be:
+der / die / das / die plural
+
+Indefinite Article — Nominativ:
+Options should only be:
+ein / eine
+
+Negative Article — Nominativ:
+Options should only be:
+kein / keine
+
+Definite Article — Akkusativ:
+Options should only be:
+den / die / das / die plural
+
+Indefinite Article — Akkusativ:
+Options should only be:
+einen / eine / ein
+
+Negative Article — Akkusativ:
+Options should only be:
+keinen / keine / kein
+
+Personal Pronouns:
+Options should only be:
+er / sie / es / sie plural
+
+Verb kosten:
+Options should only be:
+koste / kostet / kosten
+
+Do not include random vocabulary words like "die Tablets" as options unless the category specifically requires vocabulary matching.
+
+TESTING
+
+Verify:
+- "die Tablets" no longer appears randomly
+- no duplicate answer choices appear
+- correct answer appears only once
+- article questions no longer show gender hints
+- Module 2 Grammar Practice still generates 20 questions
+- every question has one clearly correct answer
+- mobile layout remains clean
