@@ -816,6 +816,97 @@ body {
   box-shadow: 0 1px 4px rgba(0,0,0,0.15);
 }
 
+/* Useful Phrases */
+.phrases-main {
+  gap: 24px;
+}
+
+.phrases-page-intro {
+  text-align: center;
+  padding: 8px 8px 0;
+}
+
+.phrases-page-title {
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.phrases-page-instruction {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.phrases-section-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.phrases-section-card {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.phrases-section-header {
+  padding: 20px 20px 14px;
+  text-align: left;
+}
+
+.phrases-section-title {
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.25;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.phrases-section-subtitle {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.phrases-phrase-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 16px 18px;
+}
+
+.phrases-phrase-card {
+  cursor: default;
+  box-shadow: none;
+  padding: 15px 16px;
+  border-radius: 14px;
+}
+
+.phrases-phrase-card:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.phrases-phrase-german {
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.35;
+  color: var(--text);
+}
+
+.phrases-phrase-english {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
 /* Article color system: der = blue, die feminine = red, das = green, die plural = yellow */
 .article-color-der    { color: #2563eb; }
 .article-color-die-f  { color: #dc2626; }

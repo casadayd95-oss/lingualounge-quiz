@@ -1,30 +1,33 @@
 import { chapters, type Chapter } from "@/data/chapters";
+import { getModulePhrases } from "@/data/modulePhrases";
 
 type Props = {
   moduleNumber: number;
   onBack: () => void;
   onSelectChapter: (chapter: Chapter) => void;
   onGrammar: () => void;
+  onPhrases: () => void;
 };
 
 const MODULE_META: Record<number, { title: string; description: string; hasGrammar: boolean }> = {
   1: { title: "Module 1", description: "Greetings, Family & Personal Info", hasGrammar: true },
   2: { title: "Module 2", description: "Furniture, Objects & Appointments", hasGrammar: true },
-  3: { title: "Module 3", description: "Coming Soon", hasGrammar: false },
-  4: { title: "Module 4", description: "Coming Soon", hasGrammar: false },
+  3: { title: "Module 3", description: "Food, Hobbies & Daily Life", hasGrammar: true },
+  4: { title: "Module 4", description: "Travel & Talking About the Past", hasGrammar: true },
 };
 
 const MODULE_CHAPTERS: Record<number, number[]> = {
   1: [1, 2, 3],
   2: [4, 5, 6],
-  3: [],
-  4: [],
+  3: [7, 8, 9],
+  4: [10, 11, 12],
 };
 
-export default function ModuleScreen({ moduleNumber, onBack, onSelectChapter, onGrammar }: Props) {
+export default function ModuleScreen({ moduleNumber, onBack, onSelectChapter, onGrammar, onPhrases }: Props) {
   const meta = MODULE_META[moduleNumber] ?? { title: `Module ${moduleNumber}`, description: "", hasGrammar: false };
   const chapterNums = MODULE_CHAPTERS[moduleNumber] ?? [];
   const moduleChapters = chapters.filter((ch) => chapterNums.includes(ch.number));
+  const modulePhrases = getModulePhrases(moduleNumber);
   const isActive = chapterNums.length > 0;
 
   return (
@@ -57,10 +60,7 @@ export default function ModuleScreen({ moduleNumber, onBack, onSelectChapter, on
             <p className="module-label">Vocabulary</p>
 
             <div className="chapter-list">
-              {moduleChapters.map((ch) => {
-                const articleCount = ch.words.filter((w) => w.article).length;
-                const totalCount = ch.words.length;
-                return (
+              {moduleChapters.map((ch) => (
                   <button
                     key={ch.number}
                     className="chapter-btn"
@@ -69,15 +69,10 @@ export default function ModuleScreen({ moduleNumber, onBack, onSelectChapter, on
                     <div className="chapter-btn-left">
                       <span className="chapter-number">Ch. {ch.number}</span>
                       <span className="chapter-title">{ch.title}</span>
-                      <span className="chapter-meta">
-                        {totalCount} words
-                        {articleCount > 0 ? ` · ${articleCount} nouns` : ""}
-                      </span>
                     </div>
                     <span className="chapter-arrow">›</span>
                   </button>
-                );
-              })}
+              ))}
             </div>
 
             {meta.hasGrammar && (
@@ -92,6 +87,23 @@ export default function ModuleScreen({ moduleNumber, onBack, onSelectChapter, on
                     <div>
                       <span className="grammar-btn-title">Module {moduleNumber} Grammar Practice</span>
                       <span className="grammar-btn-meta">20 questions · all grammar topics</span>
+                    </div>
+                  </div>
+                  <span className="chapter-arrow">›</span>
+                </button>
+              </>
+            )}
+
+            {modulePhrases.length > 0 && (
+              <>
+                <div className="section-divider" />
+
+                <button className="grammar-practice-btn" onClick={onPhrases}>
+                  <div className="grammar-btn-left">
+                    <span className="grammar-btn-star">💬</span>
+                    <div>
+                      <span className="grammar-btn-title">Useful Phrases</span>
+                      <span className="grammar-btn-meta">Extra speaking phrases from this module</span>
                     </div>
                   </div>
                   <span className="chapter-arrow">›</span>

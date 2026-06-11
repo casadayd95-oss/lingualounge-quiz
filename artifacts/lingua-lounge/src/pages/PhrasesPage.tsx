@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { getModulePhrases } from "@/data/modulePhrases";
 
 type Props = {
@@ -8,7 +8,6 @@ type Props = {
 
 export default function PhrasesPage({ moduleNumber, onBack }: Props) {
   const phrases = getModulePhrases(moduleNumber);
-  const [openPhrases, setOpenPhrases] = useState<Set<string>>(() => new Set());
   const sections = useMemo(() => {
     const grouped: {
       section: string;
@@ -31,15 +30,6 @@ export default function PhrasesPage({ moduleNumber, onBack }: Props) {
 
     return grouped;
   }, [phrases]);
-
-  function togglePhrase(id: string) {
-    setOpenPhrases((current) => {
-      const next = new Set(current);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
-  }
 
   return (
     <div className="screen">
@@ -72,26 +62,22 @@ export default function PhrasesPage({ moduleNumber, onBack }: Props) {
                 <p className="phrases-section-subtitle">{section.sectionEnglish}</p>
               </div>
 
-              <div className="chapter-list">
+              <div className="phrases-phrase-list">
                 {section.phrases.map((phrase) => {
                   const id = `${phrase.module}-${phrase.section}-${phrase.german}`;
-                  const isOpen = openPhrases.has(id);
                   return (
-                    <button
+                    <div
                       className="chapter-btn phrases-phrase-card"
                       key={id}
-                      onClick={() => togglePhrase(id)}
                     >
                       <div className="chapter-btn-left">
-                        <span className="chapter-title">{phrase.german}</span>
-                        {isOpen && (
-                          <span className="chapter-meta">{phrase.english}</span>
-                        )}
-                        {isOpen && phrase.note && (
+                        <span className="phrases-phrase-german">{phrase.german}</span>
+                        <span className="phrases-phrase-english">{phrase.english}</span>
+                        {phrase.note && (
                           <span className="chapter-meta">{phrase.note}</span>
                         )}
                       </div>
-                    </button>
+                    </div>
                   );
                 })}
               </div>

@@ -5,10 +5,12 @@ import {
   getArticleAnswer,
   getGenderColorClass,
 } from "@/data/chapters";
+import { hasChapterGrammar } from "@/data/chapterGrammar";
 
 type Props = {
   chapter: Chapter;
   onBack: () => void;
+  onChapterGrammar: () => void;
 };
 
 function shuffle<T>(arr: T[]): T[] {
@@ -37,12 +39,13 @@ const ARTICLE_BUTTONS = [
 type Status = "idle" | "correct" | "incorrect";
 type Mode = "article" | "translation";
 
-export default function Quiz({ chapter, onBack }: Props) {
+export default function Quiz({ chapter, onBack, onChapterGrammar }: Props) {
   const articleWords = useMemo(
     () => chapter.words.filter((w) => w.article),
     [chapter]
   );
   const hasArticleWords = articleWords.length > 0;
+  const hasGrammar = hasChapterGrammar(chapter.number);
 
   const [mode, setMode] = useState<Mode>(
     hasArticleWords ? "article" : "translation"
@@ -173,6 +176,13 @@ export default function Quiz({ chapter, onBack }: Props) {
           onClick={() => handleModeSwitch("translation")}
         >
           Translation
+        </button>
+        <button
+          className={`mode-btn${!hasGrammar ? " mode-btn-disabled" : ""}`}
+          onClick={() => hasGrammar && onChapterGrammar()}
+          disabled={!hasGrammar}
+        >
+          Grammar
         </button>
       </div>
 
