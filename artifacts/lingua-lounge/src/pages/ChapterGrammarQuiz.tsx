@@ -236,7 +236,7 @@ export default function ChapterGrammarQuiz({ chapterNumber, onBack }: Props) {
                     className="feedback-answer"
                     style={{ whiteSpace: "pre-line", fontSize: 13, marginTop: 8 }}
                   >
-                    <strong>Rule:</strong>
+                    <strong>Tip:</strong>
                     {current.explanation.replace(/^Rule:/, "")}
                   </p>
                 )}

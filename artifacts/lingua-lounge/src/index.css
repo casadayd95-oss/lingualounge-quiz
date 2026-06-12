@@ -882,7 +882,8 @@ body {
 }
 
 .phrases-phrase-card {
-  cursor: default;
+  width: 100%;
+  cursor: pointer;
   box-shadow: none;
   padding: 15px 16px;
   border-radius: 14px;

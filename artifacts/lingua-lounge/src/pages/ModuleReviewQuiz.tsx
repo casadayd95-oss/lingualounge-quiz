@@ -275,7 +275,7 @@ export default function ModuleReviewQuiz({ moduleNumber, onBack }: Props) {
                         className="feedback-answer"
                         style={{ whiteSpace: "pre-line", fontSize: 13, marginTop: 8 }}
                       >
-                        <strong>Rule:</strong>
+                        <strong>Tip:</strong>
                         {current.word.articleExplanation.replace(/^Rule:/, "")}
                       </p>
                     )}
@@ -299,7 +299,7 @@ export default function ModuleReviewQuiz({ moduleNumber, onBack }: Props) {
                         className="feedback-answer"
                         style={{ whiteSpace: "pre-line", fontSize: 13, marginTop: 8 }}
                       >
-                        <strong>Rule:</strong>
+                        <strong>Tip:</strong>
                         {current.question.explanation.replace(/^Rule:/, "")}
                       </p>
                     )}

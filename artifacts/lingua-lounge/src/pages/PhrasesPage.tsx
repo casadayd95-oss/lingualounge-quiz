@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { getModulePhrases } from "@/data/modulePhrases";
 
 type Props = {
@@ -8,6 +8,7 @@ type Props = {
 
 export default function PhrasesPage({ moduleNumber, onBack }: Props) {
   const phrases = getModulePhrases(moduleNumber);
+  const [openPhrases, setOpenPhrases] = useState<Set<string>>(() => new Set());
   const sections = useMemo(() => {
     const grouped: {
       section: string;
@@ -30,6 +31,15 @@ export default function PhrasesPage({ moduleNumber, onBack }: Props) {
 
     return grouped;
   }, [phrases]);
+
+  function togglePhrase(id: string) {
+    setOpenPhrases((current) => {
+      const next = new Set(current);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }
 
   return (
     <div className="screen">
@@ -65,19 +75,26 @@ export default function PhrasesPage({ moduleNumber, onBack }: Props) {
               <div className="phrases-phrase-list">
                 {section.phrases.map((phrase) => {
                   const id = `${phrase.module}-${phrase.section}-${phrase.german}`;
+                  const isOpen = openPhrases.has(id);
                   return (
-                    <div
+                    <button
+                      type="button"
                       className="chapter-btn phrases-phrase-card"
                       key={id}
+                      onClick={() => togglePhrase(id)}
+                      aria-expanded={isOpen}
+                      aria-label={`${phrase.german}. Reveal English translation.`}
                     >
                       <div className="chapter-btn-left">
                         <span className="phrases-phrase-german">{phrase.german}</span>
-                        <span className="phrases-phrase-english">{phrase.english}</span>
-                        {phrase.note && (
+                        {isOpen && (
+                          <span className="phrases-phrase-english">{phrase.english}</span>
+                        )}
+                        {isOpen && phrase.note && (
                           <span className="chapter-meta">{phrase.note}</span>
                         )}
                       </div>
-                    </div>
+                    </button>
                   );
                 })}
               </div>
