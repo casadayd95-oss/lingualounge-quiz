@@ -396,7 +396,8 @@ export const chapters: Chapter[] = [
               "article": "die",
               "gender": "feminine",
               "german": "Freizeit",
-              "english": "free time"
+              "english": "free time",
+              "includeInArticleQuiz": false
           }
       ]
   },

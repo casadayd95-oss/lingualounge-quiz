@@ -29,6 +29,10 @@ function getTranslationOptions(current: Word, allWords: Word[]): string[] {
   return shuffle([current.english, ...wrong]);
 }
 
+function isArticleQuizWord(word: Word): boolean {
+  return Boolean(word.article && word.includeInArticleQuiz !== false);
+}
+
 const ARTICLE_BUTTONS = [
   { id: "der",      label: "der",      colorClass: "article-color-der"    },
   { id: "die",      label: "die",      colorClass: "article-color-die-f"  },
@@ -41,7 +45,7 @@ type Mode = "article" | "translation";
 
 export default function Quiz({ chapter, onBack, onChapterGrammar }: Props) {
   const articleWords = useMemo(
-    () => chapter.words.filter((w) => w.article),
+    () => chapter.words.filter(isArticleQuizWord),
     [chapter]
   );
   const hasArticleWords = articleWords.length > 0;
