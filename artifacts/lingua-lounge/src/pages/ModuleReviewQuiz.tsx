@@ -70,15 +70,27 @@ function getExplanation(current: ModuleReviewQuestion): string | undefined {
   return undefined;
 }
 
-function getModuleOneMessage(correctCount: number): string {
-  if (correctCount >= 27) return "Excellent — Module 1 mastered!";
-  if (correctCount >= 23) return "Very good — review a few mistakes and try again.";
-  if (correctCount >= 18) return "Good start — revisit your weakest chapter.";
-  return "Review Chapters 1–3 and try again.";
+function getPracticeReviewChapters(moduleNumber: number): number[] {
+  if (moduleNumber === 1) return [1, 2, 3];
+  if (moduleNumber === 2) return [4, 5, 6];
+  return [];
 }
 
-function getChapterScores(answers: AnswerRecord[]) {
-  return [1, 2, 3].map((chapter) => {
+function getPracticeReviewMessage(moduleNumber: number, correctCount: number): string {
+  if (correctCount >= 27) {
+    return moduleNumber === 2
+      ? "Excellent — Module 2 mastered!"
+      : "Excellent — Module 1 mastered!";
+  }
+  if (correctCount >= 23) return "Very good — review a few mistakes and try again.";
+  if (correctCount >= 18) return "Good start — revisit your weakest chapter.";
+  return moduleNumber === 2
+    ? "Review Chapters 4–6 and try again."
+    : "Review Chapters 1–3 and try again.";
+}
+
+function getChapterScores(answers: AnswerRecord[], chapters: number[]) {
+  return chapters.map((chapter) => {
     const chapterAnswers = answers.filter((answer) => answer.chapter === chapter);
     return {
       chapter,
@@ -158,8 +170,8 @@ export default function ModuleReviewQuiz({ moduleNumber, onBack }: Props) {
 
   if (finished) {
     const pct = Math.round((score.correct / score.total) * 100);
-    const isModuleOne = moduleNumber === 1;
-    const chapterScores = getChapterScores(answers);
+    const isPracticeReview = moduleNumber === 1 || moduleNumber === 2;
+    const chapterScores = getChapterScores(answers, getPracticeReviewChapters(moduleNumber));
     return (
       <div className="screen">
         <div className="card results-card">
@@ -168,7 +180,7 @@ export default function ModuleReviewQuiz({ moduleNumber, onBack }: Props) {
             {pct === 100 ? "🏆" : pct >= 70 ? "⭐" : "📚"}
           </div>
           <h2 className="results-title">
-            {isModuleOne ? "Module 1 Quiz" : `Module ${moduleNumber} Review`}
+            {isPracticeReview ? `Module ${moduleNumber} Quiz` : `Module ${moduleNumber} Review`}
           </h2>
           <div className="score-ring">
             <span className="score-number">{score.correct}</span>
@@ -176,21 +188,21 @@ export default function ModuleReviewQuiz({ moduleNumber, onBack }: Props) {
           </div>
           <p className="score-label">{pct}% correct</p>
           <p className="encouragement">
-            {isModuleOne
-              ? getModuleOneMessage(score.correct)
+            {isPracticeReview
+              ? getPracticeReviewMessage(moduleNumber, score.correct)
               : pct === 100
               ? "Perfekt! You know your review topics!"
               : pct >= 70
               ? "Gut gemacht! Keep practising!"
               : "Weiter üben — you'll get there!"}
           </p>
-          {isModuleOne && (
+          {isPracticeReview && (
             <div className="score-bar">
               <span>✓ {score.correct}</span>
               <span>✗ {score.total - score.correct}</span>
             </div>
           )}
-          {isModuleOne && (
+          {isPracticeReview && (
             <div className="score-bar">
               {chapterScores.map((chapterScore) => (
                 <span key={chapterScore.chapter}>
@@ -201,7 +213,7 @@ export default function ModuleReviewQuiz({ moduleNumber, onBack }: Props) {
           )}
           <div className="results-actions">
             <button className="btn btn-next" onClick={handleRestart}>
-              {isModuleOne ? "Retake Module Quiz" : "Play Again"}
+              {isPracticeReview ? "Retake Module Quiz" : "Play Again"}
             </button>
             <button className="btn btn-back-outline" onClick={onBack}>
               ← Back to Module {moduleNumber}
@@ -220,7 +232,7 @@ export default function ModuleReviewQuiz({ moduleNumber, onBack }: Props) {
         </button>
         <div className="header-center">
           <span className="logo-text">
-            {moduleNumber === 1 ? "Module 1 Quiz" : `Module ${moduleNumber} Review`}
+            {moduleNumber === 1 || moduleNumber === 2 ? `Module ${moduleNumber} Quiz` : `Module ${moduleNumber} Review`}
           </span>
         </div>
         <div className="progress-pill">

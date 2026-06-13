@@ -8,7 +8,7 @@ import {
   type ChapterGrammarQuestion,
 } from "@/data/chapterGrammar";
 
-type ModuleOneReviewBucket =
+type ModuleReviewPracticeBucket =
   | "ch1Vocabulary"
   | "ch1Grammar"
   | "ch1Application"
@@ -17,13 +17,22 @@ type ModuleOneReviewBucket =
   | "ch2Application"
   | "ch3Vocabulary"
   | "ch3Grammar"
-  | "ch3Application";
+  | "ch3Application"
+  | "ch4Vocabulary"
+  | "ch4Grammar"
+  | "ch4Application"
+  | "ch5Vocabulary"
+  | "ch5Grammar"
+  | "ch5Application"
+  | "ch6Vocabulary"
+  | "ch6Grammar"
+  | "ch6Application";
 
-export type ModuleOneReviewQuestionData = {
+export type ModuleReviewPracticeQuestionData = {
   id: string;
-  chapter: 1 | 2 | 3;
+  chapter: 1 | 2 | 3 | 4 | 5 | 6;
   topic: string;
-  quizBucket: ModuleOneReviewBucket;
+  quizBucket: ModuleReviewPracticeBucket;
   prompt: string;
   options: string[];
   answer: string;
@@ -35,7 +44,7 @@ export type ModuleReviewPracticeQuestion = {
   id: string;
   chapter: number;
   topic: string;
-  quizBucket: ModuleOneReviewBucket;
+  quizBucket: ModuleReviewPracticeBucket;
   prompt: string;
   answer: string;
   options: string[];
@@ -74,7 +83,7 @@ export type ModuleReviewQuestion =
 
 export const MODULE_REVIEW_QUIZ_SIZE = 30;
 
-export const module1ReviewBank: ModuleOneReviewQuestionData[] = [
+export const module1ReviewBank: ModuleReviewPracticeQuestionData[] = [
   {
     id: "m1-q-001",
     chapter: 1,
@@ -677,16 +686,616 @@ export const module1ReviewBank: ModuleOneReviewQuestionData[] = [
   },
 ];
 
-const MODULE1_REVIEW_BUCKET_RECIPE: Record<ModuleOneReviewBucket, number> = {
-  ch1Vocabulary: 3,
+export const module2ReviewBank: ModuleReviewPracticeQuestionData[] = [
+  {
+    id: "m2-q-001",
+    chapter: 4,
+    topic: "CHAPTER 4: VOCABULARY",
+    quizBucket: "ch4Vocabulary",
+    prompt: "What does der Sessel mean?",
+    options: ["armchair", "table", "shelf", "carpet"],
+    answer: "armchair",
+  },
+  {
+    id: "m2-q-002",
+    chapter: 4,
+    topic: "CHAPTER 4: VOCABULARY",
+    quizBucket: "ch4Vocabulary",
+    prompt: "What does das Regal mean?",
+    options: ["shelf", "bed", "lamp", "picture"],
+    answer: "shelf",
+  },
+  {
+    id: "m2-q-003",
+    chapter: 4,
+    topic: "CHAPTER 4: VOCABULARY",
+    quizBucket: "ch4Vocabulary",
+    prompt: "Which German word means “lamp”?",
+    options: ["die Lampe", "der Schrank", "das Sofa", "der Teppich"],
+    answer: "die Lampe",
+  },
+  {
+    id: "m2-q-004",
+    chapter: 4,
+    topic: "CHAPTER 4: VOCABULARY",
+    quizBucket: "ch4Vocabulary",
+    prompt: "What does teuer mean?",
+    options: ["expensive", "cheap", "small", "old"],
+    answer: "expensive",
+  },
+  {
+    id: "m2-q-005",
+    chapter: 4,
+    topic: "CHAPTER 4: VOCABULARY",
+    quizBucket: "ch4Vocabulary",
+    prompt: "What does Sonderangebot mean?",
+    options: ["special offer", "shopping list", "office appointment", "email address"],
+    answer: "special offer",
+  },
+  {
+    id: "m2-q-006",
+    chapter: 4,
+    topic: "CHAPTER 4: VOCABULARY",
+    quizBucket: "ch4Vocabulary",
+    prompt: "Which German number is 500?",
+    options: ["fünfhundert", "fünfzig", "fünftausend", "fünfhunderttausend"],
+    answer: "fünfhundert",
+  },
+  {
+    id: "m2-q-007",
+    chapter: 4,
+    topic: "CHAPTER 4: GRAMMAR",
+    quizBucket: "ch4Grammar",
+    prompt: "Choose the correct definite article: ___ Tisch",
+    options: ["der", "das", "die", "den"],
+    answer: "der",
+    explanation: "Tisch is masculine, so its nominative definite article is der.",
+  },
+  {
+    id: "m2-q-008",
+    chapter: 4,
+    topic: "CHAPTER 4: GRAMMAR",
+    quizBucket: "ch4Grammar",
+    prompt: "Choose the correct definite article: ___ Bild",
+    options: ["das", "der", "die", "den"],
+    answer: "das",
+    explanation: "Bild is neuter, so its definite article is das.",
+  },
+  {
+    id: "m2-q-009",
+    chapter: 4,
+    topic: "CHAPTER 4: GRAMMAR",
+    quizBucket: "ch4Grammar",
+    prompt: "Choose the correct definite article: ___ Lampe",
+    options: ["die", "der", "das", "den"],
+    answer: "die",
+    explanation: "Lampe is feminine, so its definite article is die.",
+  },
+  {
+    id: "m2-q-010",
+    chapter: 4,
+    topic: "CHAPTER 4: GRAMMAR",
+    quizBucket: "ch4Grammar",
+    prompt: "Which pronoun replaces der Tisch?",
+    options: ["er", "es", "sie", "wir"],
+    answer: "er",
+    explanation: "A masculine noun such as der Tisch is replaced by er.",
+  },
+  {
+    id: "m2-q-011",
+    chapter: 4,
+    topic: "CHAPTER 4: GRAMMAR",
+    quizBucket: "ch4Grammar",
+    prompt: "Which pronoun replaces das Bild?",
+    options: ["es", "er", "sie", "ihr"],
+    answer: "es",
+    explanation: "A neuter noun such as das Bild is replaced by es.",
+  },
+  {
+    id: "m2-q-012",
+    chapter: 4,
+    topic: "CHAPTER 4: GRAMMAR",
+    quizBucket: "ch4Grammar",
+    prompt: "Which pronoun replaces die Lampe?",
+    options: ["sie", "er", "es", "wir"],
+    answer: "sie",
+    explanation: "A feminine noun such as die Lampe is replaced by sie.",
+  },
+  {
+    id: "m2-q-013",
+    chapter: 4,
+    topic: "CHAPTER 4: GRAMMAR",
+    quizBucket: "ch4Grammar",
+    prompt: "Complete the sentence: Der Schrank ist modern. ___ ist auch praktisch.",
+    options: ["Er", "Es", "Sie", "Wir"],
+    answer: "Er",
+    explanation: "Der Schrank is masculine, so the matching pronoun is er.",
+  },
+  {
+    id: "m2-q-014",
+    chapter: 4,
+    topic: "CHAPTER 4: GRAMMAR",
+    quizBucket: "ch4Grammar",
+    prompt: "Complete the sentence: Das Sofa kostet 800 Euro. ___ ist teuer.",
+    options: ["Es", "Er", "Sie", "Ihr"],
+    answer: "Es",
+    explanation: "Das Sofa is neuter, so the matching pronoun is es.",
+  },
+  {
+    id: "m2-q-015",
+    chapter: 4,
+    topic: "CHAPTER 4: REAL-LIFE PRACTICE",
+    quizBucket: "ch4Application",
+    prompt: "Which question matches the answer: Der Tisch kostet 299 Euro.",
+    options: ["Was kostet der Tisch?", "Wie heißt der Tisch?", "Wo ist der Tisch?", "Ist das ein Tisch?"],
+    answer: "Was kostet der Tisch?",
+    explanation: "Was kostet ...? asks for the price of one specific item.",
+  },
+  {
+    id: "m2-q-016",
+    chapter: 4,
+    topic: "CHAPTER 4: REAL-LIFE PRACTICE",
+    quizBucket: "ch4Application",
+    prompt: "Choose the best answer: Wie viel kostet die Lampe?",
+    options: ["Sie kostet 49 Euro.", "Sie ist eine Lampe.", "Sie kommt aus Wien.", "Sie heißt Mia."],
+    answer: "Sie kostet 49 Euro.",
+  },
+  {
+    id: "m2-q-017",
+    chapter: 4,
+    topic: "CHAPTER 4: REAL-LIFE PRACTICE",
+    quizBucket: "ch4Application",
+    prompt: "The sofa normally costs 600 Euro, but today it costs only 199 Euro. Complete the sentence: Das ist ein ___.",
+    options: ["Sonderangebot", "Termin", "Passwort", "Familienname"],
+    answer: "Sonderangebot",
+  },
+  {
+    id: "m2-q-018",
+    chapter: 4,
+    topic: "CHAPTER 4: REAL-LIFE PRACTICE",
+    quizBucket: "ch4Application",
+    prompt: "Which sentence gives a positive evaluation?",
+    options: ["Das Bild ist sehr schön.", "Das Bild ist sehr hässlich.", "Das Bild ist nicht praktisch.", "Das Bild ist zu teuer."],
+    answer: "Das Bild ist sehr schön.",
+  },
+  {
+    id: "m2-q-019",
+    chapter: 4,
+    topic: "CHAPTER 4: REAL-LIFE PRACTICE",
+    quizBucket: "ch4Application",
+    prompt: "Read the description: Der Sessel kostet 600 Euro. Er ist modern, aber sehr teuer. Which statement is correct?",
+    options: [
+      "The armchair is modern and expensive.",
+      "The armchair is old and cheap.",
+      "The table is modern and expensive.",
+      "The armchair costs 60 Euro."
+    ],
+    answer: "The armchair is modern and expensive.",
+  },
+  {
+    id: "m2-q-020",
+    chapter: 4,
+    topic: "CHAPTER 4: REAL-LIFE PRACTICE",
+    quizBucket: "ch4Application",
+    prompt: "Choose the best answer: Wie finden Sie das Regal?",
+    options: ["Ich finde es praktisch.", "Es kostet Regal.", "Ich komme aus Regal.", "Das Regal heiße Mia."],
+    answer: "Ich finde es praktisch.",
+    explanation: "Das Regal is neuter, so es can replace it.",
+  },
+  {
+    id: "m2-q-021",
+    chapter: 5,
+    topic: "CHAPTER 5: VOCABULARY",
+    quizBucket: "ch5Vocabulary",
+    prompt: "What does die Brille mean?",
+    options: ["glasses", "bottle", "watch", "bag"],
+    answer: "glasses",
+  },
+  {
+    id: "m2-q-022",
+    chapter: 5,
+    topic: "CHAPTER 5: VOCABULARY",
+    quizBucket: "ch5Vocabulary",
+    prompt: "What does der Schlüssel mean?",
+    options: ["key", "pen", "umbrella", "camera"],
+    answer: "key",
+  },
+  {
+    id: "m2-q-023",
+    chapter: 5,
+    topic: "CHAPTER 5: VOCABULARY",
+    quizBucket: "ch5Vocabulary",
+    prompt: "Which German color means blue?",
+    options: ["blau", "braun", "grau", "grün"],
+    answer: "blau",
+  },
+  {
+    id: "m2-q-024",
+    chapter: 5,
+    topic: "CHAPTER 5: VOCABULARY",
+    quizBucket: "ch5Vocabulary",
+    prompt: "Which German color means black?",
+    options: ["schwarz", "weiß", "gelb", "rosa"],
+    answer: "schwarz",
+  },
+  {
+    id: "m2-q-025",
+    chapter: 5,
+    topic: "CHAPTER 5: VOCABULARY",
+    quizBucket: "ch5Vocabulary",
+    prompt: "Which material is Holz?",
+    options: ["wood", "glass", "metal", "paper"],
+    answer: "wood",
+  },
+  {
+    id: "m2-q-026",
+    chapter: 5,
+    topic: "CHAPTER 5: VOCABULARY",
+    quizBucket: "ch5Vocabulary",
+    prompt: "Which material is Glas?",
+    options: ["glass", "plastic", "wood", "metal"],
+    answer: "glass",
+  },
+  {
+    id: "m2-q-027",
+    chapter: 5,
+    topic: "CHAPTER 5: GRAMMAR",
+    quizBucket: "ch5Grammar",
+    prompt: "Complete the sentence: Das ist ___ Tisch.",
+    options: ["ein", "eine", "kein", "einen"],
+    answer: "ein",
+    explanation: "Tisch is masculine. In the nominative after Das ist, use ein.",
+  },
+  {
+    id: "m2-q-028",
+    chapter: 5,
+    topic: "CHAPTER 5: GRAMMAR",
+    quizBucket: "ch5Grammar",
+    prompt: "Complete the sentence: Das ist ___ Uhr.",
+    options: ["eine", "ein", "einen", "kein"],
+    answer: "eine",
+    explanation: "Uhr is feminine, so use eine.",
+  },
+  {
+    id: "m2-q-029",
+    chapter: 5,
+    topic: "CHAPTER 5: GRAMMAR",
+    quizBucket: "ch5Grammar",
+    prompt: "Complete the sentence: Das ist ___ Handy.",
+    options: ["ein", "eine", "einen", "keine"],
+    answer: "ein",
+    explanation: "Handy is neuter, so use ein.",
+  },
+  {
+    id: "m2-q-030",
+    chapter: 5,
+    topic: "CHAPTER 5: GRAMMAR",
+    quizBucket: "ch5Grammar",
+    prompt: "Complete the sentence: Nein, das ist ___ Tisch.",
+    options: ["kein", "keine", "keinen", "nicht ein"],
+    answer: "kein",
+    explanation: "Tisch is masculine and remains nominative after Das ist, so use kein.",
+  },
+  {
+    id: "m2-q-031",
+    chapter: 5,
+    topic: "CHAPTER 5: GRAMMAR",
+    quizBucket: "ch5Grammar",
+    prompt: "Complete the sentence: Das ist ___ Flasche.",
+    options: ["keine", "kein", "keinen", "nicht"],
+    answer: "keine",
+    explanation: "Flasche is feminine, so the negative article is keine.",
+  },
+  {
+    id: "m2-q-032",
+    chapter: 5,
+    topic: "CHAPTER 5: GRAMMAR",
+    quizBucket: "ch5Grammar",
+    prompt: "Complete with the correct form of sehen: Du ___ die Kamera.",
+    options: ["siehst", "sehe", "sieht", "sehen"],
+    answer: "siehst",
+    explanation: "With du, sehen changes to siehst.",
+  },
+  {
+    id: "m2-q-033",
+    chapter: 5,
+    topic: "CHAPTER 5: GRAMMAR",
+    quizBucket: "ch5Grammar",
+    prompt: "Complete with the correct form of sehen: Leila ___ das Handy.",
+    options: ["sieht", "siehst", "sehe", "sehen"],
+    answer: "sieht",
+    explanation: "With Leila, use the er/sie/es form sieht.",
+  },
+  {
+    id: "m2-q-034",
+    chapter: 5,
+    topic: "CHAPTER 5: GRAMMAR",
+    quizBucket: "ch5Grammar",
+    prompt: "Complete the sentence: Der Tisch ist ___ Holz.",
+    options: ["aus", "bei", "als", "in"],
+    answer: "aus",
+    explanation: "Use aus to describe what material something is made from.",
+  },
+  {
+    id: "m2-q-035",
+    chapter: 5,
+    topic: "CHAPTER 5: REAL-LIFE PRACTICE",
+    quizBucket: "ch5Application",
+    prompt: "You point to an unfamiliar object and want to know its German name. What do you ask?",
+    options: ["Wie heißt das auf Deutsch?", "Woher kommt das?", "Was kostet Deutsch?", "Wie alt ist das?"],
+    answer: "Wie heißt das auf Deutsch?",
+  },
+  {
+    id: "m2-q-036",
+    chapter: 5,
+    topic: "CHAPTER 5: REAL-LIFE PRACTICE",
+    quizBucket: "ch5Application",
+    prompt: "You did not understand what someone said. What is the best response?",
+    options: ["Noch einmal, bitte.", "Das ist ein Tisch.", "Ich komme aus Wien.", "Wie viel kostet das?"],
+    answer: "Noch einmal, bitte.",
+    explanation: "Noch einmal, bitte asks someone to repeat the information.",
+  },
+  {
+    id: "m2-q-037",
+    chapter: 5,
+    topic: "CHAPTER 5: REAL-LIFE PRACTICE",
+    quizBucket: "ch5Application",
+    prompt: "Which question asks how a word is spelled?",
+    options: ["Wie schreibt man das?", "Wie findet man das?", "Wie kostet das?", "Wo arbeitet das?"],
+    answer: "Wie schreibt man das?",
+  },
+  {
+    id: "m2-q-038",
+    chapter: 5,
+    topic: "CHAPTER 5: REAL-LIFE PRACTICE",
+    quizBucket: "ch5Application",
+    prompt: "Read the description: Die Flasche ist blau und aus Glas. Which statement is correct?",
+    options: [
+      "The bottle is blue and made of glass.",
+      "The bottle is green and made of wood.",
+      "The glasses are blue and made of metal.",
+      "The bag is blue and made of plastic."
+    ],
+    answer: "The bottle is blue and made of glass.",
+  },
+  {
+    id: "m2-q-039",
+    chapter: 5,
+    topic: "CHAPTER 5: REAL-LIFE PRACTICE",
+    quizBucket: "ch5Application",
+    prompt: "Which question asks for someone’s email address?",
+    options: ["Wie ist deine E-Mail-Adresse?", "Wie heißt deine Flasche?", "Wo ist deine Telefonnummer?", "Was kostet deine Adresse?"],
+    answer: "Wie ist deine E-Mail-Adresse?",
+  },
+  {
+    id: "m2-q-040",
+    chapter: 5,
+    topic: "CHAPTER 5: REAL-LIFE PRACTICE",
+    quizBucket: "ch5Application",
+    prompt: "Someone helps you spell a difficult German word. What do you say?",
+    options: ["Danke.", "Guten Morgen.", "Nein.", "Auf Wiederhören."],
+    answer: "Danke.",
+  },
+  {
+    id: "m2-q-041",
+    chapter: 6,
+    topic: "CHAPTER 6: VOCABULARY",
+    quizBucket: "ch6Vocabulary",
+    prompt: "What does der Drucker mean?",
+    options: ["printer", "screen", "keyboard", "calendar"],
+    answer: "printer",
+  },
+  {
+    id: "m2-q-042",
+    chapter: 6,
+    topic: "CHAPTER 6: VOCABULARY",
+    quizBucket: "ch6Vocabulary",
+    prompt: "What does die Tastatur mean?",
+    options: ["keyboard", "mouse", "message", "appointment"],
+    answer: "keyboard",
+  },
+  {
+    id: "m2-q-043",
+    chapter: 6,
+    topic: "CHAPTER 6: VOCABULARY",
+    quizBucket: "ch6Vocabulary",
+    prompt: "What does der Kalender mean?",
+    options: ["calendar", "computer", "password", "office"],
+    answer: "calendar",
+  },
+  {
+    id: "m2-q-044",
+    chapter: 6,
+    topic: "CHAPTER 6: VOCABULARY",
+    quizBucket: "ch6Vocabulary",
+    prompt: "What does der Termin mean?",
+    options: ["appointment", "telephone number", "price", "special offer"],
+    answer: "appointment",
+  },
+  {
+    id: "m2-q-045",
+    chapter: 6,
+    topic: "CHAPTER 6: VOCABULARY",
+    quizBucket: "ch6Vocabulary",
+    prompt: "What does das Passwort mean?",
+    options: ["password", "email", "tablet", "order"],
+    answer: "password",
+  },
+  {
+    id: "m2-q-046",
+    chapter: 6,
+    topic: "CHAPTER 6: VOCABULARY",
+    quizBucket: "ch6Vocabulary",
+    prompt: "What does die Nachricht mean?",
+    options: ["message", "mouse", "company", "printer"],
+    answer: "message",
+  },
+  {
+    id: "m2-q-047",
+    chapter: 6,
+    topic: "CHAPTER 6: GRAMMAR",
+    quizBucket: "ch6Grammar",
+    prompt: "What is the plural of die Nachricht?",
+    options: ["die Nachrichten", "die Nachrichte", "die Nachrichts", "die Nachrichter"],
+    answer: "die Nachrichten",
+    explanation: "Nachricht forms its plural with -en: die Nachrichten.",
+  },
+  {
+    id: "m2-q-048",
+    chapter: 6,
+    topic: "CHAPTER 6: GRAMMAR",
+    quizBucket: "ch6Grammar",
+    prompt: "What is the plural of die Maus?",
+    options: ["die Mäuse", "die Mausen", "die Mäusen", "die Mause"],
+    answer: "die Mäuse",
+    explanation: "The plural of die Maus is die Mäuse.",
+  },
+  {
+    id: "m2-q-049",
+    chapter: 6,
+    topic: "CHAPTER 6: GRAMMAR",
+    quizBucket: "ch6Grammar",
+    prompt: "Complete the sentence: Ich brauche ___ Kalender aus dem Büro.",
+    options: ["den", "der", "das", "die"],
+    answer: "den",
+    explanation: "Kalender is masculine. In the accusative, der changes to den.",
+  },
+  {
+    id: "m2-q-050",
+    chapter: 6,
+    topic: "CHAPTER 6: GRAMMAR",
+    quizBucket: "ch6Grammar",
+    prompt: "Complete the sentence: Ich brauche ___ Kalender.",
+    options: ["einen", "ein", "eine", "einem"],
+    answer: "einen",
+    explanation: "A masculine indefinite article changes from ein to einen in the accusative.",
+  },
+  {
+    id: "m2-q-051",
+    chapter: 6,
+    topic: "CHAPTER 6: GRAMMAR",
+    quizBucket: "ch6Grammar",
+    prompt: "Complete the sentence: Ich brauche ___ Tablet.",
+    options: ["ein", "einen", "eine", "einer"],
+    answer: "ein",
+    explanation: "Tablet is neuter. The indefinite article remains ein in the accusative.",
+  },
+  {
+    id: "m2-q-052",
+    chapter: 6,
+    topic: "CHAPTER 6: GRAMMAR",
+    quizBucket: "ch6Grammar",
+    prompt: "Complete the sentence: Ich schreibe ___ E-Mail.",
+    options: ["eine", "ein", "einen", "einem"],
+    answer: "eine",
+    explanation: "E-Mail is feminine, so use eine.",
+  },
+  {
+    id: "m2-q-053",
+    chapter: 6,
+    topic: "CHAPTER 6: GRAMMAR",
+    quizBucket: "ch6Grammar",
+    prompt: "Complete the sentence: Ich habe ___ Kalender.",
+    options: ["keinen", "kein", "keine", "nicht"],
+    answer: "keinen",
+    explanation: "Kalender is masculine and accusative, so the negative article is keinen.",
+  },
+  {
+    id: "m2-q-054",
+    chapter: 6,
+    topic: "CHAPTER 6: GRAMMAR",
+    quizBucket: "ch6Grammar",
+    prompt: "Complete the sentence: Wir haben heute ___ Termine.",
+    options: ["keine", "kein", "keinen", "nicht ein"],
+    answer: "keine",
+    explanation: "Use keine with plural nouns such as Termine.",
+  },
+  {
+    id: "m2-q-055",
+    chapter: 6,
+    topic: "CHAPTER 6: REAL-LIFE PRACTICE",
+    quizBucket: "ch6Application",
+    prompt: "Which sentence is an appropriate company telephone greeting?",
+    options: ["Firma Medico, guten Tag.", "Medico kostet 50 Euro.", "Ich komme aus Firma Medico.", "Das ist keine Firma."],
+    answer: "Firma Medico, guten Tag.",
+  },
+  {
+    id: "m2-q-056",
+    chapter: 6,
+    topic: "CHAPTER 6: REAL-LIFE PRACTICE",
+    quizBucket: "ch6Application",
+    prompt: "You are calling and want to speak with Frau Keller. What do you ask?",
+    options: ["Ist Frau Keller da?", "Was kostet Frau Keller?", "Ist das eine Frau Keller?", "Woher kommt der Kalender?"],
+    answer: "Ist Frau Keller da?",
+  },
+  {
+    id: "m2-q-057",
+    chapter: 6,
+    topic: "CHAPTER 6: REAL-LIFE PRACTICE",
+    quizBucket: "ch6Application",
+    prompt: "The caller must wait briefly. What should the receptionist say?",
+    options: ["Einen Moment, bitte.", "Noch ein Kalender, bitte.", "Das ist kein Termin.", "Auf Wiedersehen gestern."],
+    answer: "Einen Moment, bitte.",
+  },
+  {
+    id: "m2-q-058",
+    chapter: 6,
+    topic: "CHAPTER 6: REAL-LIFE PRACTICE",
+    quizBucket: "ch6Application",
+    prompt: "How does a receptionist politely say that Herr Bauer is unavailable?",
+    options: ["Herr Bauer ist leider nicht da.", "Herr Bauer kostet heute nichts.", "Herr Bauer ist ein Drucker.", "Herr Bauer kommt aus Kalender."],
+    answer: "Herr Bauer ist leider nicht da.",
+  },
+  {
+    id: "m2-q-059",
+    chapter: 6,
+    topic: "CHAPTER 6: REAL-LIFE PRACTICE",
+    quizBucket: "ch6Application",
+    prompt: "Which expression is normally used to end a telephone call?",
+    options: ["Auf Wiederhören.", "Auf Wiedersehen.", "Guten Morgen.", "Wie heißt das?"],
+    answer: "Auf Wiederhören.",
+    explanation: "Auf Wiederhören is used on the telephone. Auf Wiedersehen is used when seeing someone in person.",
+  },
+  {
+    id: "m2-q-060",
+    chapter: 6,
+    topic: "CHAPTER 6: REAL-LIFE PRACTICE",
+    quizBucket: "ch6Application",
+    prompt: "Mia has an appointment on Tuesday at 10:00. Which sentence is correct?",
+    options: [
+      "Mia hat am Dienstag um 10 Uhr einen Termin.",
+      "Mia hat im Dienstag an 10 Uhr ein Termin.",
+      "Mia ist Dienstag aus 10 Uhr Termin.",
+      "Mia haben am Dienstag einen Termine."
+    ],
+    answer: "Mia hat am Dienstag um 10 Uhr einen Termin.",
+    explanation: "Use am with a day, um with a clock time, and einen with the masculine accusative noun Termin.",
+  },
+];
+
+const MODULE_REVIEW_BUCKET_RECIPES: Record<number, Partial<Record<ModuleReviewPracticeBucket, number>>> = {
+  1: {
+    ch1Vocabulary: 3,
   ch1Grammar: 4,
   ch1Application: 3,
   ch2Vocabulary: 3,
   ch2Grammar: 4,
   ch2Application: 3,
-  ch3Vocabulary: 3,
-  ch3Grammar: 4,
-  ch3Application: 3,
+    ch3Vocabulary: 3,
+    ch3Grammar: 4,
+    ch3Application: 3,
+  },
+  2: {
+    ch4Vocabulary: 3,
+    ch4Grammar: 4,
+    ch4Application: 3,
+    ch5Vocabulary: 3,
+    ch5Grammar: 4,
+    ch5Application: 3,
+    ch6Vocabulary: 3,
+    ch6Grammar: 4,
+    ch6Application: 3,
+  },
 };
 
 const MODULE_REVIEW_CHAPTERS: Record<number, number[]> = {
@@ -716,10 +1325,12 @@ function getTranslationOptions(current: Word, allWords: Word[]): string[] {
   return shuffle([current.english, ...wrong]);
 }
 
-function buildModule1ReviewQuiz(): ModuleReviewPracticeQuestion[] {
-  const selected = Object.entries(MODULE1_REVIEW_BUCKET_RECIPE).flatMap(
+function buildModulePracticeReviewQuiz(moduleNumber: number): ModuleReviewPracticeQuestion[] {
+  const bank = moduleNumber === 2 ? module2ReviewBank : module1ReviewBank;
+  const recipe = MODULE_REVIEW_BUCKET_RECIPES[moduleNumber] ?? {};
+  const selected = Object.entries(recipe).flatMap(
     ([bucket, count]) =>
-      shuffle(module1ReviewBank.filter((question) => question.quizBucket === bucket))
+      shuffle(bank.filter((question) => question.quizBucket === bucket))
         .slice(0, count)
         .map((question) => ({
           type: "practice" as const,
@@ -804,7 +1415,7 @@ function takeWithFill(
 }
 
 export function buildModuleReviewQuiz(moduleNumber: number): ModuleReviewQuestion[] {
-  if (moduleNumber === 1) return buildModule1ReviewQuiz();
+  if (moduleNumber === 1 || moduleNumber === 2) return buildModulePracticeReviewQuiz(moduleNumber);
 
   const articlePool = buildArticlePool(moduleNumber);
   const translationPool = buildTranslationPool(moduleNumber);

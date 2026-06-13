@@ -3,7 +3,6 @@ import HomeScreen from "@/pages/HomeScreen";
 import ModuleScreen from "@/pages/ModuleScreen";
 import Quiz from "@/pages/Quiz";
 import GrammarQuiz from "@/pages/GrammarQuiz";
-import GrammarQuiz2 from "@/pages/GrammarQuiz2";
 import GrammarQuiz3 from "@/pages/GrammarQuiz3";
 import ChapterGrammarQuiz from "@/pages/ChapterGrammarQuiz";
 import ModuleReviewQuiz from "@/pages/ModuleReviewQuiz";
@@ -111,14 +110,14 @@ export default function App() {
     if (moduleNumber === 1) {
       return <ModuleReviewQuiz moduleNumber={1} onBack={goModule} />;
     }
+    if (moduleNumber === 2) {
+      return <ModuleReviewQuiz moduleNumber={2} onBack={goModule} />;
+    }
     if (moduleNumber === 4) {
       return <ModuleReviewQuiz moduleNumber={4} onBack={goModule} />;
     }
     if (moduleNumber === 3) {
       return <GrammarQuiz3 onBack={goModule} />;
-    }
-    if (moduleNumber === 2) {
-      return <GrammarQuiz2 onBack={goModule} />;
     }
     return <GrammarQuiz onBack={goModule} />;
   }

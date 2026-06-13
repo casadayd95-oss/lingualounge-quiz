@@ -29,7 +29,7 @@ export default function ModuleScreen({ moduleNumber, onBack, onSelectChapter, on
   const moduleChapters = chapters.filter((ch) => chapterNums.includes(ch.number));
   const modulePhrases = getModulePhrases(moduleNumber);
   const isActive = chapterNums.length > 0;
-  const isModuleOne = moduleNumber === 1;
+  const isCumulativeQuizModule = moduleNumber === 1 || moduleNumber === 2;
 
   return (
     <div className="screen start-screen">
@@ -80,17 +80,21 @@ export default function ModuleScreen({ moduleNumber, onBack, onSelectChapter, on
               <>
                 <div className="section-divider" />
 
-                <p className="module-label">{isModuleOne ? "MODULE REVIEW" : "Grammar Practice"}</p>
+                <p className="module-label">{isCumulativeQuizModule ? "MODULE REVIEW" : "Grammar Practice"}</p>
 
                 <button className="grammar-practice-btn" onClick={onGrammar}>
                   <div className="grammar-btn-left">
                     <span className="grammar-btn-star">⭐</span>
                     <div>
                       <span className="grammar-btn-title">
-                        {isModuleOne ? "Module 1 Quiz" : `Module ${moduleNumber} Grammar Practice`}
+                        {isCumulativeQuizModule ? `Module ${moduleNumber} Quiz` : `Module ${moduleNumber} Grammar Practice`}
                       </span>
                       <span className="grammar-btn-meta">
-                        {isModuleOne ? "30 questions · Chapters 1–3" : "20 questions · all grammar topics"}
+                        {moduleNumber === 1
+                          ? "30 questions · Chapters 1–3"
+                          : moduleNumber === 2
+                          ? "30 questions · Chapters 4–6"
+                          : "20 questions · all grammar topics"}
                       </span>
                     </div>
                   </div>
