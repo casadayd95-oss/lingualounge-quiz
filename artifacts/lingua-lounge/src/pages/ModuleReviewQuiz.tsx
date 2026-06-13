@@ -73,18 +73,23 @@ function getExplanation(current: ModuleReviewQuestion): string | undefined {
 function getPracticeReviewChapters(moduleNumber: number): number[] {
   if (moduleNumber === 1) return [1, 2, 3];
   if (moduleNumber === 2) return [4, 5, 6];
+  if (moduleNumber === 3) return [7, 8, 9];
   return [];
 }
 
 function getPracticeReviewMessage(moduleNumber: number, correctCount: number): string {
   if (correctCount >= 27) {
-    return moduleNumber === 2
+    return moduleNumber === 3
+      ? "Excellent — Module 3 mastered!"
+      : moduleNumber === 2
       ? "Excellent — Module 2 mastered!"
       : "Excellent — Module 1 mastered!";
   }
   if (correctCount >= 23) return "Very good — review a few mistakes and try again.";
   if (correctCount >= 18) return "Good start — revisit your weakest chapter.";
-  return moduleNumber === 2
+  return moduleNumber === 3
+    ? "Review Chapters 7–9 and try again."
+    : moduleNumber === 2
     ? "Review Chapters 4–6 and try again."
     : "Review Chapters 1–3 and try again.";
 }
@@ -170,7 +175,7 @@ export default function ModuleReviewQuiz({ moduleNumber, onBack }: Props) {
 
   if (finished) {
     const pct = Math.round((score.correct / score.total) * 100);
-    const isPracticeReview = moduleNumber === 1 || moduleNumber === 2;
+    const isPracticeReview = moduleNumber >= 1 && moduleNumber <= 3;
     const chapterScores = getChapterScores(answers, getPracticeReviewChapters(moduleNumber));
     return (
       <div className="screen">
@@ -232,7 +237,7 @@ export default function ModuleReviewQuiz({ moduleNumber, onBack }: Props) {
         </button>
         <div className="header-center">
           <span className="logo-text">
-            {moduleNumber === 1 || moduleNumber === 2 ? `Module ${moduleNumber} Quiz` : `Module ${moduleNumber} Review`}
+            {moduleNumber >= 1 && moduleNumber <= 3 ? `Module ${moduleNumber} Quiz` : `Module ${moduleNumber} Review`}
           </span>
         </div>
         <div className="progress-pill">
