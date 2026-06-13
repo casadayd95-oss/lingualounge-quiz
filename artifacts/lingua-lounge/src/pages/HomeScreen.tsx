@@ -25,7 +25,7 @@ export default function HomeScreen({ onSelect }: Props) {
           <span className="logo-text">LinguaLounge</span>
         </div>
         <div className="start-badge">A1.1</div>
-        <h1 className="start-title">German Quiz</h1>
+        <h1 className="start-title">German Practice Hub</h1>
       </div>
 
       <div className="start-body">
