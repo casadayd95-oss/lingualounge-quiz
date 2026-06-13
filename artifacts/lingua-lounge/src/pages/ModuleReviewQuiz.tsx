@@ -1,7 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 import {
   buildModuleReviewQuiz,
-  MODULE_REVIEW_QUIZ_SIZE,
   type ModuleReviewQuestion,
 } from "@/data/moduleReview";
 import {
@@ -16,6 +15,10 @@ type Props = {
 };
 
 type Status = "idle" | "correct" | "incorrect";
+type AnswerRecord = {
+  chapter: number;
+  correct: boolean;
+};
 
 function renderPrompt(text: string) {
   const parts = text.split("___");
@@ -49,9 +52,40 @@ function possibleAnswersLabel(current: ModuleReviewQuestion): string {
 }
 
 function questionLabel(current: ModuleReviewQuestion): string {
+  if (current.type === "practice") return current.topic;
   if (current.type === "article") return `Chapter ${current.chapter} · Article`;
   if (current.type === "translation") return `Chapter ${current.chapter} · Translation`;
   return `Chapter ${current.chapter} · ${current.question.category}`;
+}
+
+function getQuestionPrompt(current: ModuleReviewQuestion): string {
+  if (current.type === "practice") return current.prompt;
+  if (current.type === "grammar") return current.question.prompt;
+  return "";
+}
+
+function getExplanation(current: ModuleReviewQuestion): string | undefined {
+  if (current.type === "practice") return current.explanation;
+  if (current.type === "grammar") return current.question.explanation;
+  return undefined;
+}
+
+function getModuleOneMessage(correctCount: number): string {
+  if (correctCount >= 27) return "Excellent — Module 1 mastered!";
+  if (correctCount >= 23) return "Very good — review a few mistakes and try again.";
+  if (correctCount >= 18) return "Good start — revisit your weakest chapter.";
+  return "Review Chapters 1–3 and try again.";
+}
+
+function getChapterScores(answers: AnswerRecord[]) {
+  return [1, 2, 3].map((chapter) => {
+    const chapterAnswers = answers.filter((answer) => answer.chapter === chapter);
+    return {
+      chapter,
+      correct: chapterAnswers.filter((answer) => answer.correct).length,
+      total: chapterAnswers.length,
+    };
+  });
 }
 
 export default function ModuleReviewQuiz({ moduleNumber, onBack }: Props) {
@@ -62,6 +96,7 @@ export default function ModuleReviewQuiz({ moduleNumber, onBack }: Props) {
   const [status, setStatus] = useState<Status>("idle");
   const [chosen, setChosen] = useState<string | null>(null);
   const [score, setScore] = useState({ correct: 0, total: 0 });
+  const [answers, setAnswers] = useState<AnswerRecord[]>([]);
   const [finished, setFinished] = useState(false);
 
   const current = questions[index];
@@ -78,6 +113,7 @@ export default function ModuleReviewQuiz({ moduleNumber, onBack }: Props) {
         correct: s.correct + (correct ? 1 : 0),
         total: s.total + 1,
       }));
+      setAnswers((records) => [...records, { chapter: current.chapter, correct }]);
     },
     [status, current]
   );
@@ -98,6 +134,7 @@ export default function ModuleReviewQuiz({ moduleNumber, onBack }: Props) {
     setStatus("idle");
     setChosen(null);
     setScore({ correct: 0, total: 0 });
+    setAnswers([]);
     setFinished(false);
   }, [moduleNumber]);
 
@@ -121,6 +158,8 @@ export default function ModuleReviewQuiz({ moduleNumber, onBack }: Props) {
 
   if (finished) {
     const pct = Math.round((score.correct / score.total) * 100);
+    const isModuleOne = moduleNumber === 1;
+    const chapterScores = getChapterScores(answers);
     return (
       <div className="screen">
         <div className="card results-card">
@@ -128,22 +167,41 @@ export default function ModuleReviewQuiz({ moduleNumber, onBack }: Props) {
           <div className="results-icon">
             {pct === 100 ? "🏆" : pct >= 70 ? "⭐" : "📚"}
           </div>
-          <h2 className="results-title">Module {moduleNumber} Review</h2>
+          <h2 className="results-title">
+            {isModuleOne ? "Module 1 Quiz" : `Module ${moduleNumber} Review`}
+          </h2>
           <div className="score-ring">
             <span className="score-number">{score.correct}</span>
             <span className="score-denom">/ {questions.length}</span>
           </div>
           <p className="score-label">{pct}% correct</p>
           <p className="encouragement">
-            {pct === 100
+            {isModuleOne
+              ? getModuleOneMessage(score.correct)
+              : pct === 100
               ? "Perfekt! You know your review topics!"
               : pct >= 70
               ? "Gut gemacht! Keep practising!"
               : "Weiter üben — you'll get there!"}
           </p>
+          {isModuleOne && (
+            <div className="score-bar">
+              <span>✓ {score.correct}</span>
+              <span>✗ {score.total - score.correct}</span>
+            </div>
+          )}
+          {isModuleOne && (
+            <div className="score-bar">
+              {chapterScores.map((chapterScore) => (
+                <span key={chapterScore.chapter}>
+                  Chapter {chapterScore.chapter}: {chapterScore.correct} / {chapterScore.total}
+                </span>
+              ))}
+            </div>
+          )}
           <div className="results-actions">
             <button className="btn btn-next" onClick={handleRestart}>
-              Play Again
+              {isModuleOne ? "Retake Module Quiz" : "Play Again"}
             </button>
             <button className="btn btn-back-outline" onClick={onBack}>
               ← Back to Module {moduleNumber}
@@ -161,7 +219,9 @@ export default function ModuleReviewQuiz({ moduleNumber, onBack }: Props) {
           ‹ Back
         </button>
         <div className="header-center">
-          <span className="logo-text">Module {moduleNumber} Review</span>
+          <span className="logo-text">
+            {moduleNumber === 1 ? "Module 1 Quiz" : `Module ${moduleNumber} Review`}
+          </span>
         </div>
         <div className="progress-pill">
           {index + 1} / {questions.length}
@@ -208,11 +268,11 @@ export default function ModuleReviewQuiz({ moduleNumber, onBack }: Props) {
                 </span>
               </div>
             </>
-          ) : (
+          ) : current.type === "grammar" || current.type === "practice" ? (
             <div className="question-prompt-wrap">
-              <p className="question-prompt">{renderPrompt(current.question.prompt)}</p>
+              <p className="question-prompt">{renderPrompt(getQuestionPrompt(current))}</p>
             </div>
-          )}
+          ) : null}
 
           <div className="buttons-grid-translation options-grid">
             {options.map((option) => {
@@ -275,7 +335,7 @@ export default function ModuleReviewQuiz({ moduleNumber, onBack }: Props) {
                         className="feedback-answer"
                         style={{ whiteSpace: "pre-line", fontSize: 13, marginTop: 8 }}
                       >
-                        <strong>Tip:</strong>
+                        <strong>Tip:</strong>{" "}
                         {current.word.articleExplanation.replace(/^Rule:/, "")}
                       </p>
                     )}
@@ -294,13 +354,13 @@ export default function ModuleReviewQuiz({ moduleNumber, onBack }: Props) {
                     <p className="feedback-answer">
                       The answer is <strong>{possibleAnswersLabel(current)}</strong>
                     </p>
-                    {current.question.explanation && (
+                    {getExplanation(current) && (
                       <p
                         className="feedback-answer"
                         style={{ whiteSpace: "pre-line", fontSize: 13, marginTop: 8 }}
                       >
-                        <strong>Tip:</strong>
-                        {current.question.explanation.replace(/^Rule:/, "")}
+                        <strong>Tip:</strong>{" "}
+                        {getExplanation(current)?.replace(/^Rule:/, "")}
                       </p>
                     )}
                   </>

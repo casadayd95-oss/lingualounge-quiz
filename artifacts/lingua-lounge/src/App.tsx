@@ -108,6 +108,9 @@ export default function App() {
   }
 
   if (view === "grammar") {
+    if (moduleNumber === 1) {
+      return <ModuleReviewQuiz moduleNumber={1} onBack={goModule} />;
+    }
     if (moduleNumber === 4) {
       return <ModuleReviewQuiz moduleNumber={4} onBack={goModule} />;
     }
