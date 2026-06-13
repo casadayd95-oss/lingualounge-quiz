@@ -29,7 +29,7 @@ export default function ModuleScreen({ moduleNumber, onBack, onSelectChapter, on
   const moduleChapters = chapters.filter((ch) => chapterNums.includes(ch.number));
   const modulePhrases = getModulePhrases(moduleNumber);
   const isActive = chapterNums.length > 0;
-  const isCumulativeQuizModule = moduleNumber >= 1 && moduleNumber <= 3;
+  const isCumulativeQuizModule = moduleNumber >= 1 && moduleNumber <= 4;
 
   return (
     <div className="screen start-screen">
@@ -96,6 +96,8 @@ export default function ModuleScreen({ moduleNumber, onBack, onSelectChapter, on
                           ? "30 questions · Chapters 4–6"
                           : moduleNumber === 3
                           ? "30 questions · Chapters 7–9"
+                          : moduleNumber === 4
+                          ? "30 questions · Chapters 10–12"
                           : "20 questions · all grammar topics"}
                       </span>
                     </div>
