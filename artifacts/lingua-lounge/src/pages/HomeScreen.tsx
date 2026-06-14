@@ -7,8 +7,8 @@ type ModuleInfo = {
 const modules: ModuleInfo[] = [
   { number: 1, description: "Greetings, Family & Personal Info", active: true },
   { number: 2, description: "Furniture, Objects & Appointments", active: true },
-  { number: 3, description: "Coming soon", active: false },
-  { number: 4, description: "Coming soon", active: false },
+  { number: 3, description: "Hobbies, Food & Free Time", active: true },
+  { number: 4, description: "Travel, Time & Past Events", active: true },
 ];
 
 type Props = {
@@ -25,7 +25,7 @@ export default function HomeScreen({ onSelect }: Props) {
           <span className="logo-text">LinguaLounge</span>
         </div>
         <div className="start-badge">A1.1</div>
-        <h1 className="start-title">German Quiz</h1>
+        <h1 className="start-title">German Practice Hub</h1>
       </div>
 
       <div className="start-body">

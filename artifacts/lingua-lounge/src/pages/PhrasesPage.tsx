@@ -72,20 +72,23 @@ export default function PhrasesPage({ moduleNumber, onBack }: Props) {
                 <p className="phrases-section-subtitle">{section.sectionEnglish}</p>
               </div>
 
-              <div className="chapter-list">
+              <div className="phrases-phrase-list">
                 {section.phrases.map((phrase) => {
                   const id = `${phrase.module}-${phrase.section}-${phrase.german}`;
                   const isOpen = openPhrases.has(id);
                   return (
                     <button
+                      type="button"
                       className="chapter-btn phrases-phrase-card"
                       key={id}
                       onClick={() => togglePhrase(id)}
+                      aria-expanded={isOpen}
+                      aria-label={`${phrase.german}. Reveal English translation.`}
                     >
                       <div className="chapter-btn-left">
-                        <span className="chapter-title">{phrase.german}</span>
+                        <span className="phrases-phrase-german">{phrase.german}</span>
                         {isOpen && (
-                          <span className="chapter-meta">{phrase.english}</span>
+                          <span className="phrases-phrase-english">{phrase.english}</span>
                         )}
                         {isOpen && phrase.note && (
                           <span className="chapter-meta">{phrase.note}</span>
